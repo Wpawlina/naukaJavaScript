@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let obj={ a: 1,b: 2, str:'text',arr:[1,2,3],info:{o: 1}};
+        let obj2={test: 333};
+        let result=Object.assign(obj2,obj);
+        console.log(result);
+        console.log(obj2);
+        ///result===obj2 
+        //obj i obj2 bede dzielic wspolne wlasciwoscie jesli sa to objekty
+        //obj.arr===obj2.arr
+        //obj.info===obj2.info
+
+        let o1={a:10,b:1}
+        let o2={c:111}
+        let o3={d:'TEST'}
+        let obj3=Object.assign({},o1,o2,o3);
+        console.log(obj3);
+        let obj4={
+                num: 12,
+                str:'TEXT',
+                printData: ()=>{ console.log("Hello!")},
+                arr: [1,2,3,4,5],
+                data:{
+                    a:1,
+                    b:2
+                },
+                date:new Date()
+
+
+        };
+        console.log('KEYS');
+        const objKeys=Object.keys(obj4);
+        for(const key of objKeys)
+        {
+            console.log(key,obj4[key]);
+        }
+        console.log('VALUES');
+        const objValues=Object.values(obj4);
+        console.log(objValues);
+        console.log('ENTRIES');
+        const objEntries=Object.entries(obj4)
+        console.log(objEntries);
+        for(const [key,value] of objEntries)
+        {
+            console.log(key,value)
+        }
+        console.log('JSON');
+        let strData=JSON.stringify(obj4);
+        document.write(strData);
+        let otherObj=JSON.parse(strData);
+        console.log(otherObj);
+        otherObj.date=new Date(otherObj.date);
+        console.log(otherObj);
+        console.log('DEFINE PROPERTY');
+        let obj5={
+            a:10,
+            b:12,
+        }
+        obj5.c=14;
+        Object.defineProperty(obj5,'prop',{
+            value:'TEST',
+            writable: true,
+            configurable: false,
+            enumerable: true
+        })
+        console.log(obj5);
+        delete obj5.prop;
+        console.log(obj5);
+       console.log(obj5['prop'])
+       const objValues2=Object.values(obj5);
+        console.log(objValues2);
+
+        console.log('call aplly bind');
+        const employee={
+            name:"Anna",
+            printInfo: function(surname,city)
+            {
+                console.log(this.name,surname,city);
+            }
+        }
+        const user={name:'Adam'};
+        employee.printInfo.call(user,'Adamwoski','Kraków');//call wywoluje metoda jendgo obiektu na innym obikecie
+        employee.printInfo.apply(user,['Karlowski','Szczecin']);//apply robi to samo co call jednak jako argumenty przyjmuje tylko tablice
+        let userInfo=employee.printInfo.bind(user,'Hoholski','Warszawa');//bind pozwala zapisac takie wywołanie jako zmienna;
+        userInfo();
+
+        
+
+    </script>    
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function *foo()
+        {
+            yield "test1";
+            yield "test2";
+            yield "test3";
+
+        }
+
+        const testIter=foo();
+        console.log(testIter.next())
+        console.log(testIter.next())
+        console.log(testIter.next())
+        console.log(testIter.next())
+
+
+        function *genRandomId()
+        {
+            while(true)
+            {
+                let v=Math.trunc(Math.random()*1000);
+                yield v;
+            }
+        }
+        const randomId=genRandomId();
+        console.log(randomId.next())
+
+        function *genRandomMaxId()
+        {
+            while(true)
+            {
+                const maxValue=yield;
+                let v=Math.trunc(Math.random()*maxValue);
+                yield v;
+            }
+        }
+
+        const arr=Array.from(Array(10).keys());
+        console.log(arr);
+        const randomNumMaxIter=genRandomMaxId();
+
+        arr.forEach(el=>{
+            randomNumMaxIter.next();//zatrzymujemy sie przed przypisaniem
+            const random=randomNumMaxIter.next(150);
+            console.log('random: '+random.value);
+        })
+
+
+       
+    </script>
+</body>
+</html>

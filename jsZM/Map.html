@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         let map2=new Map();
+       map2.set('a1',10);
+       map2.set(10,{test:123});
+       map2.set(NaN,undefined);
+       console.log(map2.get(10));
+       console.log(map2.size);
+       const Apple={fruit:'apple'};
+       map2.set(Apple,{apple:'Fruit'});
+       console.log(map2.get(Apple));
+       map2.delete(10);
+       console.log(map2.has(10));
+       const iterator=map2.entries();
+       console.log(iterator);
+       //console.log(iterator.next());
+       let result=iterator.next();
+       while(!result.done)
+       {
+        console.log(result.value);
+        result=iterator.next();
+       }
+       console.log(map2.has(NaN));
+       for(const [key,value] of map2)
+       {
+        console.log('map1 '+key+' '+value);
+       }
+       const map3=new Map([
+        ['key1',8],
+        ['key2',99]
+       ]);
+       map3.forEach(function(key,value){
+        console.log(key,value);
+       })
+       const map4=new Map([...map2,...map3])
+       console.log(map4);
+       document.write(map4);
+      
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Animal {
+            constructor(name)
+            {
+                this.name=name;
+                if(Animal.count===undefined)
+                {
+                    Animal.count=0;
+                }
+                Animal.count++;
+                this._type='animal';
+            }
+            set type(str)
+            {
+                if(typeof str==="string")
+                {
+                    this._type=str
+                }
+            }
+            get type()
+            {
+                return this._type;
+            }
+            printName(){
+            console.log('Animal: ',this.name)
+            }
+            static printAnimalCount()
+            {
+                return Animal.count;
+            }
+        }
+    class Human extends Animal
+    {
+        constructor(name){
+           
+            if(Human.count===undefined)
+               {
+                    Human.count=0;
+               }
+               Human.count++;   
+               super(name);
+        }
+        printName()
+        {
+            super.printName();
+            console.log('Human:',this.name)
+           
+        }
+        static printHumanCount()
+        {
+            return Human.count;
+        }
+        static printGeneralCount()
+        {
+            console.log(Animal.printAnimalCount(),Human.printHumanCount());
+        }
+        
+        
+
+    }
+    const human1=new Human('Olek');
+    new Human();
+    new Human();
+    new Human(); 
+    new Animal();
+    console.log(Animal.count);
+    human1.printName();
+    console.log(Human.printAnimalCount())
+    Human.printGeneralCount()
+    console.log(Human.count)
+    </script>
+    
+</body>
+</html>

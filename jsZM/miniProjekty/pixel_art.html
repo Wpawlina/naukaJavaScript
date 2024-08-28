@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Art</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #6ee7b7, #3b82f6);
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+.app-container {
+    margin-top: 20px;
+    width: 70%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.toolbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #4338ca;
+}
+
+.canvas-container {
+    display: grid;
+    grid-template-columns: repeat(40, 10px); 
+    grid-template-rows: repeat(40, 10px); 
+    gap: 1px;
+}
+
+.canvas-pixel {
+    width: 10px; 
+    height: 10px; 
+    background-color: #fff;
+    border: 1px solid #eee;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="toolbar">
+            <input type="color" id="color-picker">
+            <button id="save-art"   >Save</button>
+            <button id="clear-canvas">Clear</button>
+        </div>
+        <div class="canvas-container" id="canvas-container">
+        </div>
+
+            
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvasContainer = document.getElementById('canvas-container');
+            const colorPicker = document.getElementById('color-picker');
+            const saveArtButton = document.getElementById('save-art');
+            const clearCanvasButton = document.getElementById('clear-canvas'); 
+            
+            let currentColor = '#000000';
+            let isDrawing = false;
+
+            colorPicker.addEventListener('input', () => {
+                currentColor = colorPicker.value;
+            });
+
+            function createCanvas(){
+                for (let i=0;i<1600;i++)
+                {
+                    const pixel=document.createElement('div');
+                    pixel.classList.add('canvas-pixel');
+                    pixel.addEventListener('mousedown',()=>{
+                        isDrawing=true;
+                        pixel.style.backgroundColor=currentColor;
+                    });
+                    pixel.addEventListener('mouseenter',()=>{
+                        if(isDrawing)
+                        {
+                            pixel.style.backgroundColor=currentColor;
+                        }
+                    });
+                    pixel.addEventListener('mouseup',()=>{
+                        isDrawing=false;
+                    });
+                    canvasContainer.appendChild(pixel);
+                }
+
+            }
+            document.addEventListener('mouseup',()=>{
+                isDrawing=false;
+            });
+            
+            clearCanvasButton.addEventListener('click',()=>{
+                const pixels=document.querySelectorAll('.canvas-pixel');
+                pixels.forEach(pixel=>{
+                    pixel.style.backgroundColor='#fff';
+                });
+            });
+
+            saveArtButton.addEventListener('click',()=>{
+                html2canvas(canvasContainer,{scale:1}).then(canvas=>{
+                    const img=canvas.toDataURL('image/png').replace('image/png','image/octet-stream');
+                    const link=document.createElement('a');
+                    link.download='pixel-art.png';
+                    link.href=img;
+                    link.click();
+                }).catch(err=>console.error('Failed to save image:',err));
+            });
+            createCanvas();
+
+        });
+
+
+    </script>
+</body>
+</html>

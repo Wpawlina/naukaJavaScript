@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Car 
+        {
+            constructor()
+            {
+                this.name='Mustang';
+                this._brand="Ford";
+                this.onClick=this.#clicked;
+            }
+            // domyslnie public
+            color = 'red';
+            topSpeed=250
+            //pola prywatne
+            #currentPrice=123000;
+            currentPrice=200_000;
+
+            static PI=3.14;
+            static #TEST='txt';
+
+
+            printInfo=  () => {
+                console.log("currentPrice: ", this.currentPrice);
+                console.log("currentPrice: ", this.#currentPrice);
+                console.log("currentPrice: ", Car.#TEST);
+            };
+            #clicked=  () =>{
+                console.log('Car clicked: ', this.name);
+            }
+
+            static getNewCar()
+            {
+                return new Car();
+            }
+        }
+        
+        let car = new Car
+        console.log(car.color);
+        console.log(car.currentPrice);//undefined;
+        car.printInfo();
+        car.onClick();
+        setTimeout(()=>{car.onClick()},10);
+        console.log(Car.PI);
+        console.log(Car.getNewCar());
+        
+
+    </script>
+    <script type="module">
+        //top level await
+        const url="https://api.chucknorris.io/jokes/random";
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+        
+        
+
+    </script>
+
+</body>
+</html>

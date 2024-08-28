@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translator</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #07f26d, #0c8bfa);
+  }
+  
+  .container {
+    max-width: 600px;
+    width: 100%;
+    padding: 30px;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-input textarea {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    resize: none;
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  select, button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  
+  button {
+    background-color: #087f23;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #065f18;
+  }
+  
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-input">
+            <textarea spellcheck="false" id="source-text" placeholder="Type or paste your text here..."></textarea>
+            <textarea spellcheck="false" id="translated-text" placeholder="Translation will appear here..." readonly></textarea>
+        </div>
+        <div class="controls">
+            <select id="source-lang"></select>
+            <button id="translate-btn">Translate</button>
+            <select id="target-lang"></select>
+    </div>
+
+    <script>
+        /*
+
+    url do api:
+    `https://api.mymemory.translated.net/get?q=${text}&langpair=${translateFrom}|${translateTo}`
+
+    zwraca:
+    {
+        "responseData": {
+            "translatedText": "Hello, welcome to the new course",
+            "match": 0.85
+        }
+    }
+
+    */
+
+    class Translator
+    {
+        constructor()
+        {
+            this.sourceTextField = document.getElementById('source-text');
+            this.translatedTextField = document.getElementById('translated-text');
+            this.translateButton= document.getElementById('translate-btn');
+            this.sourceLanguageSelect = document.getElementById('source-lang');
+            this.targetLanguageSelect = document.getElementById('target-lang');
+
+            this.initializeLanguages();
+            this.addEventListeners();
+        }
+        initializeLanguages()
+        {
+            const languageOptions={
+                'en':'English',
+                'pl':'Polish',
+                'de':'German',
+                'fr':'French',
+                'es':'Spanish',
+                'it':'Italian',
+                'ru':'Russian',
+                'ja':'Japanese',
+                'ko':'Korean',
+                'zh':'Chinese'
+            };
+            Object.entries(languageOptions).forEach(([code,name])=>
+            {
+                const sourceOption=document.createElement('option');
+                sourceOption.value=code;
+                sourceOption.textContent=name;
+                this.sourceLanguageSelect.appendChild(sourceOption);
+
+                const targetOption=document.createElement('option');
+                targetOption.value=code;
+                targetOption.textContent=name;
+                this.targetLanguageSelect.appendChild(targetOption);
+            });
+        }
+        addEventListeners()
+        {
+            this.translateButton.addEventListener('click',()=>this.translate());
+            this.sourceTextField.addEventListener('keypress',(e)=>
+            {
+                if(e.key==='Enter')
+                {
+                    this.translate();
+                }
+            });
+        }
+        translate()
+        {
+            const text=this.sourceTextField.value.trim();
+            const fromLang=this.sourceLanguageSelect.value;
+            const toLang=this.targetLanguageSelect.value;
+            if(!text)return;
+            this.translatedTextField.setAttribute('placeholder','Translating...');
+            const apiUrl=`https://api.mymemory.translated.net/get?q=${text}&langpair=${fromLang}|${toLang}`;
+            fetch(apiUrl).then(response=>response.json()).then(data=>
+            {
+                this.translatedTextField.value=data.responseData.translatedText;
+                data.matches.forEach(match=>
+                {
+                    if(match.id===0)
+                    {
+                        this.translatedTextField.value=match.translation;
+                    }
+                });
+            }).catch(error=>
+            {
+                console.error('Error translating text:',error);
+                this.translatedTextField.value='Error translating text';
+            });
+
+        }
+        
+    }
+    document.addEventListener('DOMContentLoaded',()=>{
+        new Translator();
+    });
+    </script>
+    
+</body>
+</html>

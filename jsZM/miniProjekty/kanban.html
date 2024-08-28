@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Kanban Board</title>
+    <style>
+        body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #eee; 
+}
+
+.task-input {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.task-input input {
+    flex: 1;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.task-input button {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px; 
+    background-color: #4CAF50; 
+    color: white;
+    border: none; 
+}
+
+.kanban-board {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.kanban-column {
+    flex: 1;
+    margin: 0 10px;
+    border-radius: 8px; 
+    padding: 20px;
+    color: white; 
+}
+
+.to-do {
+    background-color: #2196F3; 
+}
+
+.doing {
+    background-color: #FF9800;
+}
+
+.done {
+    background-color: #4CAF50; 
+}
+
+.trash {
+    background-color: #F44336; 
+}
+
+.kanban-column h2 {
+    text-align: center;
+}
+
+.task-list {
+    min-height: 100px;
+}
+
+.task {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px; 
+    cursor: grab;
+    color: black; 
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="task-input">
+        <input type="text" id="new-task" placeholder="Add new task">
+        <button id="add-task">Add Task</button>
+    </div>
+
+    <div class="kanban-board">
+        <div class="kanban-column to-do">
+            <h2>To Do</h2>
+            <div class="task-list" id="to-do"></div>
+        </div>
+        <div class="kanban-column doing">
+            <h2>Doing</h2>
+            <div class="task-list" id="doing"></div>
+        </div>
+        <div class="kanban-column done">
+            <h2>Done</h2>
+            <div class="task-list" id="done"></div>
+        </div>
+        <div class="kanban-column trash">
+            <h2>Trash</h2>
+            <div class="task-list" id="trash"></div>    
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>
+    {
+        const addButton=document.getElementById('add-task');
+        const newTaskInput=document.getElementById('new-task');
+        const columns=document.querySelectorAll('.kanban-column');
+
+
+        addButton.addEventListener('click',addTask);
+
+        newTaskInput.addEventListener('keypress',(e)=>
+        {
+            if(e.key==='Enter')
+            {
+                addTask();
+            }
+        });
+
+        columns.forEach(column=>
+        {
+            column.addEventListener('dragover',(e)=>
+            {
+                e.preventDefault();
+                e.dataTransfer.dropEffect='move';
+            });
+
+            column.addEventListener('drop',dropTask);
+        });
+
+   
+
+    function addTask()
+    {
+        const taskText=newTaskInput.value.trim();
+        if(taskText!=='')
+        {
+            const task=createTaskElement(taskText);
+            document.getElementById('to-do').appendChild(task);
+            newTaskInput.value='';
+
+        }
+        
+    }
+    function createTaskElement(taskText)
+    {
+        const task=document.createElement('div');
+        task.className='task';
+        task.textContent=taskText;
+        task.draggable=true;
+        task.addEventListener('dragstart',dragStart);
+        task.addEventListener('dragend',dragEnd);
+        return task;
+    }
+    function dragStart(e)
+    {
+        e.dataTransfer.setData('text/plain','dragged-task');
+        this.classList.add('dragging');
+    }    
+    function dragEnd()
+    {
+        this.classList.remove('dragging');
+    }
+    function dropTask(e)
+    {
+        e.preventDefault();
+        const task=document.querySelector('.dragging');
+        if(e.target.classList.contains('task-list'))
+        {
+            e.target.appendChild(task);
+        }
+        else if(e.target.classList.contains('task'))
+        {
+            e.target.parentNode.insertBefore(task,e.target);
+        }
+        
+    }
+   
+});
+
+    </script>
+    
+</body>
+</html>

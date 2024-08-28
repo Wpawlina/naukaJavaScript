@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    document.write([]);
+    if(0)console.log("wykona sie");
+    let num;
+    function multiply(a,b)
+    {
+       const multi=a*b;
+       return multi;
+
+    }
+    function avgValue(l1,l2,l3,l4)
+    {
+        const sum=l1+l2+l3+l4;
+        return (sum/4);
+
+    }
+    document.write(avgValue(2,4,8,10),'<br>');
+    function createTv(brand,screenSize,color)
+    {
+        if(!(color==='white' || color==='black'||color==='silver'))
+        {
+            return null;
+        }
+        const tv={
+            brand: brand,
+            screenSize: screenSize,
+            color:color
+        }
+        return tv;
+    }
+    const newTv=createTv('Sharp',55,'');
+    console.log(newTv);
+
+    const multiply2= function (num1,num2){ return num1*num2};
+    document.write(multiply2(10,17),'<br>')
+    let user=['adam'];
+    let test=user;
+    test[1]='ada';
+    console.log(user);
+    console.log(test);
+    const print= function (txt)
+    {
+        document.write(txt,'<br>')
+    }
+    
+    function greaterThan6(arr,callback)
+    {
+        for(let i=0;i<arr.length;i++)
+        {
+            if(arr[i]>6)
+            {
+                callback(arr[i]);
+            }
+        }
+    }
+
+    const arrtest=[1,2,3,4,5,6,7,8,9,10,11,12];
+    greaterThan6(arrtest,print);
+
+    function sumAll()
+    {
+        let result=0;
+        for(let i=0;i<arguments.length;i++)//argumnets jest wbuduwana tablica wszytkich argumentów
+        {
+            result+=arguments[i];
+        }
+        return result;
+    }
+    print(sumAll(10,20,30));
+    function foo2(num1,num2)//... operator rest pozwala nam stworzyc tablice dowolnej ilosci argumentow;
+    {
+        console.log(arguments[0]+arguments[1]+arguments[2]);
+        
+    }
+  foo2(100,999,111);
+    function multiplyArr3(arr)
+    {
+        for(let i=0;i<arr.length;i++)
+        {
+            arr[i]=arr[i]*3;
+        }
+    }
+    const arr1=[1,2,3,4,5,6,7];
+    multiplyArr3(arr1);
+    console.log(arr1);
+    function createEmploy(name='unknown',surname='unknown',email='unknown')
+    {
+        return {
+            name:name,
+            surname: surname,
+            email: email
+        }
+    }
+    console.log(createEmploy("Ola","Adamska"))
+    function foo3(...params)// operator rest ... pozwala nam stworzyc tablice dowolnej ilosci argumentow;
+    {
+        console.log(params);
+    }
+    foo3(1,2,3,4,5,6,7)
+    const arrp=[1,2,3,4,5];
+    function foo4(a,b,c,d)
+    {
+        console.log(a,b,c,d);
+    }
+    foo4(...arrp);// operator spread ... pozwala na rozbiecie tablicy na parametry funkcji nawet jesli tablica ma wiecje elementow niz funkcja parametrów
+    let obj1={ name:'Kasia',city:'Wwa',favColor:'red'};
+    let obj2={
+        ...obj1,
+        email: 'Kasia@example.com',
+        country:'Poland',
+        city:'Krk'
+    }
+    console.log(obj1);
+    console.log(obj2);
+    function createComputer(cpu,gpu,ram,disk)
+    {
+        return {
+            cpu:cpu,
+            gpu: gpu,
+            ram: ram,
+            disk: disk
+        }
+
+    }
+    let computer=createComputer('AMD',"Nvidia","32GB","1TB");
+    function createLaptop(computer,type,weight)
+    {
+        return {
+            ...computer,
+            type:type,
+            weight:weight
+        }
+    }
+    let laptop=createLaptop(computer,'Laptop','2.5');
+    console.log(computer);
+    console.log(laptop);
+    function createPerson(name,contact)
+    {
+        let person={
+            name:name,
+            email: null,
+            phoneNumber: null
+
+        }
+        if(typeof contact==='string')
+        {
+            person.email=contact;
+        }
+        else if(typeof contact==='number')
+        {
+            person.phoneNumber=contact;
+        }
+        return person;
+    }
+    console.log(createPerson('Ola','Ola@example.com'));
+    console.log(createPerson('Ala',987654321));
+
+
+    console.log('CLOUSRES');
+    let b=20;
+    let c=10;
+    function foo()
+    {
+        let b=5;
+        c=-1;
+        function test(d)
+        {
+            console.log(b,c,d);
+        }
+        return test;
+       
+    }
+
+    let show=foo();
+    show(11);
+
+    for(let i=1;i<3;i++)
+    {
+      // setTimeout(function(){ console.log(i)},500);
+    }
+    //domysle parametry funkcji 
+    console.log('DOMYSELE PARAMETRY FUNCKJI')
+    function fun1(v)
+    {
+        if(typeof v === "undefined")
+        {
+            v=23;
+        }
+        console.log(v);
+
+    }
+    fun1();
+
+    function fun2(a,b=44,c={test:'text'})
+    {
+        console.log(a,b,c);
+    }
+    fun2(10);
+    fun2(5,77);
+    
+    function fun3([a=1,b=2]=[])
+    {
+        console.log(a,b);
+
+    }
+    fun3();
+    fun3([]);
+    fun3([10,99])
+    function fun4([a=1,b=2]=[500,1000])
+    {
+        console.log(a,b);
+
+    }
+    fun4()
+    function fun5([a=1,b=2]=[500])
+    {
+        console.log(a,b);
+
+    }
+    fun5()
+    function fun6({a=1,b=2}={})
+    {
+        console.log(a,b)
+    }
+    fun6({a:10,b:20,c:30 });
+    fun6({a:10});
+    fun6();
+
+    
+
+    
+
+  
+  
+    </script>
+
+    
+</body>
+</html>

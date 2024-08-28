@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let num =10_000_000;
+        console.log(num);
+        let num2=10.123_45;
+        console.log(num2);
+        console.log("Ania Anna Ola Karol".replaceAll('A','O'));
+        const objWeak= new WeakRef({
+            data:10,
+            str: 'txt'
+        })
+        console.log(objWeak.deref());
+        console.log(objWeak.deref().data);
+        //Promise any
+        const promises=[
+            Promise.reject('OK'),
+            Promise.reject('great'),
+            Promise.resolve('nice'),
+        ]
+        let result = Promise.any(promises).then(result=>console.log(result)).catch(err=>console.log(err));
+        
+
+
+        //logical assigment operators 
+        //if(a) a= b
+        let a='a';
+        let b=15;
+        a &&=b;// jezeli a jest true to bedzie przypisane b
+        console.log(a);
+        
+        //if(!c) c= d
+        let c= null;
+        let d = 13
+        c ||= d
+        console.log(c);
+
+        let e= undefined;
+        let f=100;
+        e ??=f;
+        console.log(e);
+    </script>
+    
+</body>
+</html>

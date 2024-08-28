@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let data =`  { 
+"user": { "name": "Ola", "surname": "Kowalska", "age": 33, "languages": ["Javascript", "Java", "Python"], "address": { "city": "Krk", "street": "Wilcza", "country": "Poland"}}}`;
+let obj1=JSON.parse(data);
+console.log(obj1);
+console.log(obj1.user.name);
+let obj2={
+    name:"Adam",
+    languages: ["Javascript", "Java", "Python"],
+    address: { city: "Krk", street: "Wilcza",country: "Poland"},
+    find:function () {return this.address.city},
+    surname: "Kowalska"
+}
+let str=JSON.stringify(obj2);
+console.log(str);
+obj2=JSON.parse(str);
+console.log(obj2.find());
+    </script>
+    
+</body>
+</html>

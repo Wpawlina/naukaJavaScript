@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        
+        console.log("Arrow function");
+        const getObj=()=>({test:'test'});
+        console.log(getObj());
+        const getArr=()=>['DUPA','dupa'];
+        console.log(getArr());
+        [1,2,3,4].forEach((el)=>console.log(el));
+        const tab1=[1,2,3,4].map((el)=>el*2);
+        console.log(tab1);
+        const tab2=[1,2,3,4,5,6,7].map((el)=>el*3).filter((el)=>el>10);
+        console.log(tab2);
+      /*  let Bar= () =>
+        {
+            this.test='test';
+        }
+        const bar1=new Bar();
+        console.log(bar1); funkcjia strzałkowa nie moze byc konstruktorem;*/
+
+       /* const arrgTest=()=>{
+            console.log(arguments);
+        }
+        arrgTest(1,2,3,4); w funckji strzałkowej nie mozna stosowac tablicy argumnets mozna to rozwiacac zapomoca operatora rest*/
+        const arrgTest2=(a,b,...parmas)=>console.log(a,b,parmas);
+        arrgTest2(1,2,3,4,5);
+        let objTest={
+            data:'Hello',
+            fun1:function () {
+                console.log(this);
+            },
+            fun2:()=>
+            {
+                console.log(this);
+            },
+            fun3:function(){
+                setTimeout(function(){console.log(this)}, 1);
+            },
+            fun4:()=>{
+                setTimeout(function(){console.log(this)}, 1);
+            },
+            fun5:function(){
+                setTimeout(()=>{console.log(this)}, 1);
+            },
+            fun6:()=>{
+                setTimeout(()=>{console.log(this)}, 1);
+            }
+            
+
+        }
+        objTest.fun1();
+        objTest.fun2();
+      //  objTest.fun3();
+      //  objTest.fun4();
+      //  objTest.fun5();
+       // objTest.fun6();
+        const Name="Anna Górska";
+        const charsOfName=[...Name];
+        console.log(charsOfName);
+        console.log('DESTRUCTURING ASSIGMENT');
+       const [num,name2,obj] =[12,'Ania',{b:6}];
+       console.log(num,name2,obj)
+       const {username,age=12,city="KRK"}={username:'Ola', age:30 };
+       console.log(username,age,city);
+       const [a,,b]=[1,2,3];
+       console.log(a,b);
+       function getUserData()
+       {
+        const city='Wawa';
+        const street='Wilcza'
+        //zapis skrócony
+        
+            return{
+                city,
+                street
+            }
+        
+       }
+       const userData1=getUserData();
+       console.log(userData1);
+       const {city:userCity}=userData1;
+       console.log(userCity);
+       const userDetails={
+        name:'Karol',
+        age:30,
+        city:'Gdansk'
+       };
+       function printUser({city,name})
+       {
+            console.log(city,name);
+       }
+       printUser(userDetails);
+       const userTest={
+        id:34,
+        address:{
+            country:'Poland'
+        },
+        language:['polish','english','german']
+       }
+       const {id,address:{country},language:[l1,,l2]}=userTest;
+       console.log(id,country,l1,l2);
+       console.log('Map set petla for of')
+       let objt={name:'obj'};
+       let map1=new Map(
+        [
+            ['test1',111],
+            [objt,{a:1}]
+        ]
+       )
+       map1.set([1,2,3],[1,2,3,4]);
+       console.log(map1.get(objt))
+       for(let [key,value] of map1)
+       {
+        console.log(key,value);
+       }
+       let set1=new Set([1,1,1,0,1,2,3,2,2,2,2,4,5,5,5,1,6,7])
+       for(let el of set1)
+       {
+        console.log(el);
+       }
+       let div=document.querySelectorAll('div');
+       for(let d of div)
+       {
+        d.innerHTML='test';
+        d.style.color='red';
+       }
+       let testObj={
+            test:'test',
+            num:11,
+            print:()=>null
+       }
+       Object.defineProperty(testObj,'test2',{
+        value:'dupa',
+        writable:false,
+        enumerable:true,
+        configurable:false
+       })
+       delete testObj.test2;
+       testObj.test2='dddduuppaaa';
+       console.log(testObj)
+       console.log(testObj.propertyIsEnumerable('test2'))
+
+       for(let v of  Object.values(testObj))console.log(v);
+
+       for( let i in testObj)
+       {
+            console.log(testObj[i]);
+       }
+       console.log('STRING I TAMPLATE LITERALS');
+       const user={name:'Ania',city:'Wawa'};
+       const txt=` Hello ${user.name} from ${user.city}.
+            ${2+2}
+            `; 
+       console.log(txt);
+       function uppercase(strings,...values)
+       {
+        console.log(strings,values);
+        let result='';
+        for(let i=0;i<strings.length;i++)
+        {
+            result+=strings[i];
+            if(i<values.length)
+            {
+                let v=values[i];
+               
+                if(typeof v ==='string')
+                {
+                    v=v.toUpperCase();
+                }
+                 result+=v;
+            }
+           
+        }
+        return result;
+
+       }
+       const txt2=uppercase` Hello ${user.name} from ${user.city}.
+            ${2+2}
+            `; 
+        console.log(txt2);
+        const text='HEllow world!';
+        console.log(text.includes('world'));//includes zwraca true jesli string zawiera podany podstring
+        console.log(text.startsWith('Hello'));//startsWith zwraca true jesli string zaczyna sie od podanego podstring
+        console.log(text.startsWith('HEllo'));//true
+        console.log(text.startsWith('Ello',1));//true
+        console.log(text.endsWith('world!'));//true 
+        console.log('ARRAY');
+        const arr3=Array.of(3,4,5,6,7,7,8);
+        console.log(arr3);
+        const arr4=Array.from('TEXT');
+        console.log(arr4);
+        const arr5=Array.from([1,2,3,4],(value)=>value*2)
+        console.log(arr5);
+        const arr6=Array.from([1,2,3,4],function(a){return a*this.value},{value:4})
+        console.log(arr6);
+        const arr7=[1,3,5,7,9];
+        console.log(arr7.fill(100));
+        console.log(arr7.fill(0,2));
+        console.log(arr7.fill(9,1,4));
+        console.log(arr7.find((v)=>v===100))
+        console.log(arr7.findIndex(v=>v<10))
+        const arr8=[100,3,45,67,200];
+        console.log(arr8.copyWithin(1,3));//[100,67,200,67,200]
+        console.log([1,2,3,4,5,6].copyWithin(1,3,4));//[1,4,3,4,5,6]
+        console.log([1,2,3,4,5,6].copyWithin(1,3,5));//[1,4,5,4,5,6]
+        const arr9=[256,'test',{},34];
+        for(let c of arr9.values())
+        {
+            console.log(c);
+        }
+        console.log('MATH');
+        console.log(Math.trunc(7.2));
+        console.log(Math.sign(-1));//zwraca 1 dla dodatnich liczb i 0 dla ujemnych
+       
+        console.log(Math.cbrt(8));
+        
+
+       
+
+
+
+
+       
+        
+
+
+
+
+
+    </script>  
+</body>
+</html>

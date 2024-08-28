@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         const url="https://api.chucknorris.io/jokes/random";
+       /* function processData(data)
+         {
+            console.log(data);
+         }
+         function error(err)
+         {
+            console.log(err);
+         }
+         fetch(url).then(response=>response.json()).then(data=>processData(data)).catch(err=>error(err));
+
+         function getJoke()
+         {
+            return new Promise(function (resolve,reject){
+                const req=new XMLHttpRequest();
+                req.open('GET',url);
+                req.onload=function(){
+                    if(req.status===200)
+                    {
+                        resolve(req.response);
+                    }
+                    else
+                    {
+                        reject(req.responseText);
+
+                    }
+                }
+               req.onerror=function () {
+                reject(new Error('Network Error'))
+               }
+               req.send();
+             })
+         }
+         getJoke().then(data=>{
+           let json=JSON.parse(data);
+           console.log(json);
+        }).catch(err=>console.log(err))*/
+
+         async function getData()
+        {
+            try
+            {
+            const response=await fetch(url)
+            const data=await response.json();
+            console.log(data)
+            console.log('test');
+            }
+            catch(err)
+            {
+                console.log(err)
+            }
+        }
+        getData();
+        console.log('test2');
+    </script>
+</body>
+</html>

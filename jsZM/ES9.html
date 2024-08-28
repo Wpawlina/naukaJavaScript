@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function *getData()
+        {
+            yield await Promise.resolve("ok 1");
+            yield await Promise.resolve("ok 2");
+            yield await Promise.resolve("ok 3");
+            yield await Promise.resolve("ok 4");
+        }
+        let dataIter=getData();
+        dataIter.next().then(v=>console.log(v.value));
+        dataIter.next().then(v=>console.log(v.value));
+        dataIter.next().then(v=>console.log(v.value));
+        dataIter.next().then(v=>console.log(v.value));
+
+        let dataIter2=getData();
+        async function testIter()
+        {
+            let dataIter2=getData();
+            for await (let val of dataIter2)
+            {
+                console.log('testIter:'+val);
+            }
+        }
+        testIter();
+        //rest
+        const foo={
+            name:"Ania",
+            city:'KRK',
+            country:"Poland"
+        }
+        const {name,...data}=foo;
+        console.log(name,data);
+
+        function userData({name,...params})
+        {
+            console.log(name);
+            console.log(params);
+        }
+        userData(foo);
+
+        //spread
+
+        const bar={
+            dane:'test',
+            age:23,
+            a:23,
+            b:99
+        };
+        const obj={
+            
+            a:1000,
+            ...bar,
+            c:7
+        }
+        console.log(obj);
+        //finally
+        fetch('https://api.chucknorris.io/jokes/random').then(response=>response.json()).then(response=>console.log(response)).finally(()=>{console.log(
+            //wywoła sie zawsze
+            
+            'finally')});
+    
+    </script>
+</body>
+</html>

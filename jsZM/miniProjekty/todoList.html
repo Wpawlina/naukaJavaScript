@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Enhanced To Do List</title>
+    <style>
+       *,
+*:before,
+*:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #4caf50, #087f23);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.app-container {
+    width: 60%;
+    min-width: 500px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+#task-input-area {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#task-input-area input {
+    flex-grow: 1;
+    height: 45px;
+    margin-right: 10px;
+    padding: 0 15px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#task-input-area button {
+    width: 100px;
+    height: 45px;
+    background-color: #087f23;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#task-input-area button:hover {
+    background-color: #065f18;
+}
+
+#task-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.task-item.completed {
+    text-decoration: line-through;
+    opacity: 0.3;
+}
+
+.task-item .task-actions {
+    display: flex;
+    align-items: center;
+}
+
+.task-item button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #087f23;
+    margin-left: 10px;
+}
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div id="task-input-area">
+            <input type="text" id="task-input" placeholder="Enter task">
+            <button id="add-task-btn">Add task</button>
+        </div>
+        <div id="task-list">
+
+        </div>
+    </div>
+
+
+    <script>
+        class TaskManager
+        {
+            constructor(storageKey)
+            {
+                this.storageKey=storageKey
+                this.tasks=JSON.parse(localStorage.getItem(this.storageKey))||[];
+            }
+            addTask(taskName)
+            {
+                this.tasks.push({name:taskName,completed:false});
+                this.updateLocalStorage();
+                this.renderTask();
+            }
+            toggleTask(index)
+            {
+                this.tasks[index].completed=!this.tasks[index].completed;
+                this.updateLocalStorage();
+                this.renderTask();
+            }
+            removeTask(index)
+            {
+               
+                    this.tasks.splice(index,1);
+                this.updateLocalStorage();
+                this.renderTask();
+            }
+            updateLocalStorage()
+            {
+                localStorage.setItem(this.storageKey,JSON.stringify(this.tasks));
+            }
+          
+            renderTask()
+            {
+                const taskList=document.getElementById('task-list');
+                taskList.innerHTML='';
+                this.tasks.forEach((task,index)=>
+                {
+                    const taskItem=document.createElement('div');
+                    taskItem.className=`task-item ${task.completed?'completed':''}`;
+                    taskItem.innerHTML=`
+                    <span>${task.name}</span>
+                    <div class="task-actions">
+                        <button onclick="taskManager.toggleTask(${index})"><i class="fas fa-check"></i></button>
+                        <button onclick="taskManager.removeTask(${index})"><i class="far fa-trash-alt"></i></button>
+                    </div>
+                    `;
+                    taskList.appendChild(taskItem);
+                });
+
+            }
+        }
+
+        const taskManager=new TaskManager('tasks');
+        document.addEventListener('DOMContentLoaded',()=>taskManager.renderTask());
+        document.getElementById('add-task-btn').addEventListener('click',()=>
+        {
+            const taskInput=document.getElementById('task-input');
+            if(taskInput.value.trim()!=='')
+            {
+                taskManager.addTask(taskInput.value);
+                taskInput.value='';
+            }
+        });
+        document.getElementById('task-input').addEventListener('keypress',(e)=>
+        {
+            if(e.key==='Enter')
+            {
+                const taskInput=document.getElementById('task-input');
+                if(taskInput.value.trim()!=='')
+                {
+                    taskManager.addTask(taskInput.value);
+                    taskInput.value='';
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body
+        {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f6d365 0%, #fd744f 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .autpcomplete-container
+        {
+            width: 100%;
+            position: relative;
+            max-width: 400px;
+        }
+        .autpcomplete-wrapper
+        {
+            position:absolute;
+            width: 100%;
+        }
+        #autocomplete-input
+        {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        #suggestion-list
+        {
+            background-color: #fff;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            list-style: none;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="autocomplete-container">
+        <div class="autocomplete-wrapper">
+            <input type="text" id="autocomplete-input" placeholder="Type to search...">
+            <ul id="suggestion-list">
+
+            </ul>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const fruits=['Jabłko','Cytryna','Pomarancza','Wiśnie','Truskawki','Fifie','Mango','Ananas','Gruszka','Banan'];
+            const input=document.getElementById('autocomplete-input');
+            const suggestionList=document.getElementById('suggestion-list');
+       
+
+        input.addEventListener('input',()=>{
+            suggestionList.innerHTML='';
+            let value=input.value.toLowerCase();
+            if(value.length<=0)return;
+            let suggestions=fruits.filter(fruit=>fruit.toLowerCase().includes(value));
+            suggestions.forEach(element => {
+                let li=document.createElement('li');
+                li.textContent=element;
+                li.addEventListener('click',()=>{
+                    input.value=element;
+                    suggestionList.innerHTML='';
+                });
+                suggestionList.appendChild(li);
+                
+
+            });   
+        });
+        document.addEventListener('click',(e)=>{
+            if(e.target!==input)
+            {
+                suggestionList.innerHTML='';
+            }
+        });
+    });
+
+    </script>
+</body>
+</html>

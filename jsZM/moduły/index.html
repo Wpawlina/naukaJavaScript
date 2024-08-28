@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module" src="test-module1.js" ></script>
+    <script type="module">
+        import * as myModule from "./test-module1.js";
+        console.log(myModule);
+        console.log(myModule.testValue);
+        console.log(myModule.getdata());
+        console.log(myModule.default.value);
+        console.log(myModule.value);//undefined
+
+        import {getdata,testValue,add as plus} from "./test-module1.js";
+        console.log(getdata());//123 
+        console.log(testValue);
+        console.log(plus(2,10));
+
+        import myDefault from  "./test-module1.js";
+        console.log(myDefault);
+
+
+        import defaultExport,{multiply,testValue as testData} from  "./test-module1.js";
+        console.log(multiply(12,10));
+        console.log(testData);
+
+        import {setTestValue} from "./test-module1.js";
+        setTestValue('Nowa wartosc');
+        console.log(testValue);
+        
+
+        
+    </script>
+</body>
+</html>

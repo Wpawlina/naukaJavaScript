@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const set1= new Set();
+        set1.add(2);
+        set1.add(NaN);
+        set1.add({a:10});
+        set1.add('text');
+        set1.add('2');
+        set1.add('2'); 
+        set1.add(20);
+        set1.delete(20); 
+        console.log(set1.has('text'));
+        console.log(set1.size);
+        document.write(set1);
+        for( const item of set1)
+        {
+            console.log(item);
+        }
+        const arr1=Array.from(set1);
+        console.log(arr1);
+        const arr2=[...set1];
+        console.log(arr2);
+        const set2=new Set([...set1,10,111,200,-9,{},()=>{}])
+       console.log(set2);
+       
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let obj={
+            a:10,
+            b:99,
+            str:'test'
+        };
+        const handler = { 
+            get(target,prop,receiver)
+            {
+                return target[prop]+'!';
+                
+            },
+            set(target,prop,value)
+            {
+                if(prop==='a' ||prop==='b')
+                {
+                    if(Number.isInteger(value))
+                    {
+                        target[prop]=value;
+                    }
+                    else
+                    {
+                        console.log('wrong data');
+                    }
+
+                }
+               
+                
+            }
+        };
+        const proxy1=new Proxy(obj,handler);
+        console.log(proxy1.a);
+        console.log(proxy1.b);
+        console.log(obj.a);
+        console.log(Reflect.get(proxy1,'str'));
+        proxy1.b=112;
+        console.log(proxy1.b);
+        proxy1.b='dupa';
+        console.log(proxy1.b); 
+
+        
+
+    </script>
+</body>
+</html>

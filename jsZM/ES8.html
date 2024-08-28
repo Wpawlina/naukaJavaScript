@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj={
+            name:'test',
+            value:99,
+            str:'hello',
+            o:{a:1}
+        }
+        console.log(Object.values(obj));
+        console.log(Object.entries(obj));
+
+
+        function test(a,){};
+        const foo=(a,)=>{};
+        foo(3,);
+
+        async function getDate(){
+            const response =await fetch("https://api.chucknorris.io/jokes/random");
+            const data=await response.json();
+            console.log(data);
+        }
+        getDate();
+
+        console.log(Object.getOwnPropertyDescriptors(obj));
+        let str="Hello".padStart(10,'0');
+        console.log(str);
+        str="hello".padEnd(20,'!');
+        console.log(str);
+
+
+
+
+
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div class="vehicle">porsche</div>
+    <div class="vehicle">mercedes</div>
+    <div class="vehicle">bmw</div>
+    <div class="vehicle">ford</div>
+
+    <script>
+        /*var cars = document.getElementsByClassName("vehicle");
+        for(var i=0; i < cars.length; i++) {
+            cars[i].onclick = function() {
+                console.log( "car i:" + i, cars[i] );
+                cars[i].style.color = "red";
+            }
+        }*/
+
+
+
+        // rozwiązanie z IIFE
+        var cars = document.getElementsByClassName("vehicle");
+        for(var i=0; i < cars.length; i++) {
+            (function(a){
+                cars[a].onclick = function() {
+                    console.log( "car i:" + a, cars[a] );
+                    cars[a].style.color = "red";
+                }
+            })(i); 
+        }
+
+    </script>
+    
+</body>
+</html>

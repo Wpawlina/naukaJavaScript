@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Car
+        {
+            constructor(name,year)
+            {
+                this.name=name;
+                this.year=year;
+
+            }
+            print()
+            {
+                console.log(this.name,this.year);
+            }
+        }
+        const car1=new Car('Dodge',1993);
+        car1.print();
+        let Animal=class{
+            constructor(name){
+                this.name=name;
+                this._age=1;
+               if(Animal.count===undefined)
+               {
+                    Animal.count=0;
+               } 
+               Animal.count++;//emulacja statycznej własciwosic
+            }
+            getName=()=>{
+                return this.name;
+            }
+            set age(value)
+            {
+                if(value>0)
+                {
+                    this._age=value;
+                }
+            }
+            get age()
+            {
+                return this._age;
+            }
+            static getNewAnimal()
+            {
+                return new Animal("Default Animal");
+            }
+            static getAnimalCount()
+            {
+                return Animal.count;
+            }
+
+        }
+        const animal1=new Animal('zebra');
+        console.log(animal1)
+        console.log(animal1.getName());
+        animal1.age=-10;
+        console.log(animal1.age);
+        const animal2=Animal.getNewAnimal();
+        console.log(animal2.getName());
+        console.dir(Animal);
+        console.log(Animal.getAnimalCount());
+        
+         
+
+    </script>
+</body>
+</html>

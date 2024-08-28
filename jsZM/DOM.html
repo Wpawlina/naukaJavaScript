@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div id="content">Lorem, ipsum dolor.</div>
+    <ul id="menu">
+        <li class="menu-item ">link #1</li>
+        <li class="menu-item ">link #2</li>
+        <li class="menu-item ">link #3</li>
+    </ul>
+    <input type="text" value='content'>
+    <textarea name="" id="" cols="8" rows="8"></textarea>
+    <p>Lorem ipsum dolor sit.
+    </p>
+    
+    <script>
+        let div=document.getElementById('content');
+        console.log(div);
+        div.style.color='orange';
+        div.innerHTML='<b>Hello world</b>';
+        let liItem=document.querySelector('li.menu-item');
+        console.log(liItem);
+        liItem.style.fontWeight='bold';
+        let liList=document.querySelectorAll("ul li.menu-item");
+        console.log(liList);
+        for(let el of liList)
+        {
+           
+           el.style.color="red";
+   
+           
+           
+        }
+        const liList2=document.getElementsByTagName('li');
+        for(let el of liList2)
+        {
+            el.style.fontSize="30px"
+        }
+     /*   let p=document.createElement("p");
+        p.innerHTML="<b>Hello world</b>";
+        div.appendChild(p);
+       
+        console.log(div.childNodes)
+         p=document.createElement("p");
+        p.innerHTML="Click me!";
+       
+        document.getElementsByTagName('body')[0].appendChild(p);
+       // document.addEventListener('click',function(event){
+       //    console.log(event);
+      //     console.log(event.clientX,event.clientX);
+       // })
+      //  p.addEventListener('click',(event)=>{
+     //       console.log("p-click",event.clientX);
+    //    })
+
+        const input=document.querySelector("input");
+        input.value="Hello world";
+        const textarea=document.querySelector("textarea");
+        textarea.value="Content....."
+        input.addEventListener("input",function(event){
+            console.log(event.target);
+            console.log(event.target.value);
+        })
+        textarea.addEventListener('input',(event)=>{
+            console.log(event.target.value);
+        })*/
+        const pp=document.getElementsByTagName('p')[0]
+        pp.addEventListener('mouseenter',function (event){
+            console.log("mouseenter");
+           
+        })
+        pp.addEventListener('mouseleave',function (event){
+            console.log("mouseleave");
+        })
+        pp.addEventListener('mousemove',function (event){
+            console.log("mousemove");
+        })
+        
+
+       
+        
+        
+    
+        
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        let num=Number.MAX_SAFE_INTEGER;
+        console.log(num);
+        let newNum=BigInt(Number.MAX_SAFE_INTEGER)+2n
+        console.log(newNum);
+       
+      //  loadCode();
+      
+
+     //   if(1==1)
+     //   {
+    ////        import("./moduły/test-module1.js").then(obj=>console.log(obj)).catch(err=>console.log(err));
+    //    }
+     //   async function loadCode()
+     //   {
+      //      let {add,multiplay}=await import("./moduły/test-module1.js")
+      //      let result=add(2,10);
+      //      console.log(result);
+
+      //  }
+        // ?? nullish operator -- null i undefined
+        const x=null || 10;
+        console.log(x);
+        const str='' || "text";
+        console.log(str);
+        const x2=null ?? 10;
+        console.log(x2);
+        const str2="" ?? "text";
+        console.log(str2);
+
+
+        let o={
+            a:10,
+            obj:{
+                b:23,
+                data:{
+                    str:'text'
+                }
+            }
+        }
+        console.log(o.obj?.data2?.str);
+
+
+
+        const promiseArr=[
+            Promise.resolve(20),
+            Promise.reject(null),
+            Promise.resolve({str:"ol"}),
+            Promise.reject(new Error('Error'))
+        ];
+        Promise.allSettled(promiseArr).then(results=>{
+            console.log("All promises settled",results)
+            results.forEach(e=>console.log(e.status,e.value));
+        
+        
+        });
+
+        //match 
+        let strData='Hello Anna, Kasia, Ania, Antonia, Ola';
+        let regex=new RegExp('An[a-z]*','g');
+        let match;
+        while((match=regex.exec(strData))!==null)
+        {
+            console.log(`${match[0]} at index ${match.index}`);
+        }
+
+        //globalThis 
+        console.log(globalThis===window);
+
+        //module namespace exports
+        
+
+
+
+    </script>
+</body>
+</html>

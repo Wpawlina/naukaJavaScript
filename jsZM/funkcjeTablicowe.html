@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr=[1,2,3,4,5,6,7,8];
+        arr.forEach((x)=>console.log(x))
+        const arr2=arr.map(x=>x*3);
+        console.log(arr2);
+        const arr3=arr2.filter(x=>x>10);
+        console.log(arr3);
+        const result=arr.reduce((acc,value)=>acc*value);
+        console.log(result);
+        const found =arr.find(el=>el>4);
+        console.log(found);
+        const foundIndex =arr.findIndex(el=>el>4);
+        console.log(foundIndex);
+
+        const numbers=[2,3,4,5,6,7,8];
+        const info = numbers.every(el=>el>=1);//zwraca true jesli kazdy elemnt spełnia warunek
+        console.log(info);
+        const info2=numbers.some(el=>el>=7);//zwraca true jesli chociaz jeden element spelnia warunek
+        console.log(info2);
+
+
+    </script>
+</body>
+</html>

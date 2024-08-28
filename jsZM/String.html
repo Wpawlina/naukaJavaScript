@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str1='dupa';
+        let str2=str1+str1.charAt(0);
+        console.log(str2);
+        console.log(str1.charCodeAt(3))
+        let str="a b c d e f g" ;
+        console.log(str.split(' '))
+        const data="1 2 3 4 5 6 7".split(' ');
+        let result=data.join('-');
+        console.log(result);
+        str=" A B C DD E F G D DD ";
+        str=str.replace("DD","test");
+        console.log(str);
+        str=" A B C DD E F G D DD ";
+        str=str.replace(/DD/g,'TEST')
+        console.log(str);
+        str="0123456789";
+        console.log(str.substring(2,6));
+        console.log(str.substr(2,5));
+        console.log(str.substr(-3,2));
+        str="Kasia ma kota, Kasia ma też psa";
+        console.log(str.indexOf("ma"))
+        console.log(str.lastIndexOf("ma"))
+        let str3=str.substring(str.lastIndexOf("Kasia"));
+        console.log(str3);
+
+    
+
+    </script>
+    
+</body>
+</html>

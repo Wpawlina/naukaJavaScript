@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Generator</title>
+    <style>
+        body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: linear-gradient(to bottom, #18a3f3, #0862e8);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-family: Arial, sans-serif;
+}
+
+.app-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    width: 50px; 
+}
+
+#prompt-input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 10px; 
+}
+
+#generate-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #00ca0e;
+    color: white;
+    cursor: pointer;
+}
+
+#generate-btn:hover {
+    background-color: #0056b3;
+}
+
+#images {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.image-container {
+    margin-top: 20px;
+    border: 5px solid black;
+    background: black;
+    padding: 5px;
+}
+
+.image-prompt {
+    margin-top: 5px;
+    color: white;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="input-container">
+            <input type="text" id="prompt-input" placeholder="Type to generate..." autocomplete="off">
+            <button id="generate-btn">Generate</button>
+
+        </div>
+        <div id="images">
+
+        </div>
+
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const generateBtn=document.getElementById('generate-btn');
+            const promptInput=document.getElementById('prompt-input');
+            const imagesContainer=document.getElementById('images');
+            
+            generateBtn.addEventListener('click',generateImage);
+            promptInput.addEventListener('keypress',(e)=>{
+                if(e.key==='Enter')
+                {
+                    generateImage();
+                }
+            })
+            async function generateImage() {
+                const prompt = promptInput.value.trim();
+                if (!prompt) return;
+                
+                promptInput.disabled = true; // Wyłącza input podczas generowania obrazka 
+
+                const Api = "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";
+
+                const HFInference = (
+                    await import("https://cdn.skypack.dev/@huggingface/inference@2.0.0")
+                ).HfInference;
+
+                const hf = new HFInference(Api);
+                
+                try {
+                    const blob = await hf.textToImage({
+                        inputs: prompt,
+                        parameters: {negative_prompt: "easynegative"},
+                        model: "prompthero/openjourney-v4",
+                    });
+                    
+                    const imageUrl = URL.createObjectURL(blob);
+                    displayImage(imageUrl, prompt); 
+                } catch (error) {
+                    console.error('Error generating image:', error);
+                } finally {
+                    promptInput.disabled = false; 
+                    promptInput.value = ''; 
+                }
+            }
+            function displayImage(imageUrl,prompt)
+            {
+                const imageContainer=document.createElement('div');
+                imageContainer.classList.add('image-container');
+                const img=document.createElement('img');
+                img.src=imageUrl;
+                const promptText=document.createElement('div');
+                promptText.classList.add('image-prompt');
+                promptText.textContent=`Prompt: ${prompt}`;
+                imageContainer.appendChild(img);
+                imageContainer.appendChild(promptText);
+                imagesContainer.appendChild(imageContainer);
+                
+            }
+
+        })
+    </script>
+    
+</body>
+</html>

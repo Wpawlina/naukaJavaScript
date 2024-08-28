@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let tab=[1,2,3,4,5];
+        tab.push(6);
+        console.log(tab);
+        let szesc=tab.pop();
+        console.log(szesc);
+        console.log(tab);
+        tab=tab.reverse();
+        console.log(tab);
+        tab=tab.concat([6,7,8,9,10]);
+        console.log(tab);
+        tab=new Array(7);
+        console.log(tab);
+        tab=new Array(5).fill(7);
+        console.log(tab);
+        tab=['Ala','Ola','Kasia'];
+        for(let i in tab)
+        {
+            document.write(tab[i],'<br>');
+        }
+        for(let name of tab)
+        {
+            document.write(name,'<br>'); 
+        }
+        tab.forEach(function (item,index,arr){
+            document.write(item,' ',index,' ',arr,'<br>'); 
+        })
+        tab=[{name:'Ola'},{name:'Kasia'}]
+        tab.forEach( (item,index,arr)=>{
+            document.write(item.name,' ',index,'<br>'); 
+        })
+        tab=['Ala','Ola','Kasia','Adam','Karol','Daniel'];
+        let pos=tab.indexOf('Adam');
+        console.log(pos);
+        console.log(tab.includes('Zuza'));
+        console.log(tab.includes('Daniel'));
+        tab=tab.sort();
+        console.log(tab);
+        tab=[12,33,444,5,1,23,44,5];
+        tab=tab.sort();
+        console.log(tab);
+        tab=tab.sort((a,b)=>a-b)
+        console.log(tab);
+        tab=[12,33,444,5,1,23,44,5];
+        tab.unshift(-12,-3,-1,0);
+        console.log(tab);
+        let firstDigits=tab.shift();
+        console.log(firstDigits);
+        console.log(tab);
+        let arr=['a','b','c','d','e','f'];
+        let res=arr.splice(2,3);
+        console.log(res,arr)
+        arr.splice(1,0,'test',1,2,3);
+        console.log(arr);
+        arr=['Ala','Ola','Kasia','Basia','Asia'];
+        let newArr=arr.map((value,index,arr)=>{ return value+'!' })
+        console.log(newArr)
+        let filtered=arr.filter(function (value){
+           return value.length>=4
+
+        })
+        console.log(filtered);
+        let  reduce=[1,2,3,4,5,6,7].reduce((acc,currValue,index,arr)=>{
+            return acc+currValue;
+        })
+        console.log(reduce);
+        const arr2=[1,2,3,4,5,6,7,8];
+        console.log(arr2.every((value)=>value>1))
+        let check=(value)=>value>0;
+        console.log(arr2.every(check))
+    
+        
+
+    </script>
+
+
+</body>
+</html>

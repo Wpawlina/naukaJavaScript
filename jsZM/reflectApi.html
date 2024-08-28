@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const car={
+            name:'Ford',
+            topSpeed:200,
+            printInfo:  function() {
+                console.log(this.name,this.topSpeed);
+            },
+        };
+        console.log(Reflect.has(car,'name'));
+        console.log(Reflect.has(car,'brand'));
+        Reflect.set(car,'brand','test');
+        console.log(Reflect.has(car,'brand'));
+        console.log(Reflect.ownKeys(car));
+        Reflect.deleteProperty(car,'brand');
+        console.log(Reflect.has(car,'brand'));
+
+        function Test(a,b)
+        {
+            this.a=a;
+            this.b=b;
+        }
+        const obj= Reflect.construct(Test,[1,5]);
+        console.log(obj);
+    </script>
+</body>
+</html>

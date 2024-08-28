@@ -1,0 +1,2913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+
+var data = 10; // zmienna data ma wartość 10, typ liczba
+data = "tekst"; // teraz data ma wartość "tekst" czyli String
+data = false; // data ma wartość boolean
+data = new Date(); // data przechowuje obiekt Date
+
+
+// typy proste, inaczej prymitywne
+let num = 7 // typ Number np 9, 23.8 
+let str = "tekst" // typ String
+let flag = true; // typ Boolean
+let el = null; // null, intencjonalnie zmienna nie ma wartości
+let info; // domyślnie undefined, zmienna zadeklarowana, ale nie ma wartości 
+let mySymbol = Symbol("Sym");// Symbol, dodany w ECMA2015
+let bigInt = 1; // BigInt
+
+let obj = new Object(); // Wszystkie obiekty w JS są instancją Object, bazują na nim
+let arr = new Array("Volvo", "GMC", "SRT"); // obiekt Array, tablica
+let date = new Date(); // obiekt Date
+let math = new Math(); // obiekt Math
+let err = new Error(); // obiekt Error
+
+let txt = "jakiś tekst"; // typ prosty, string
+let txtLength = txt.length; // w tle zamiana na obiekt String i pobranie length
+txt.toUpperCase(); // podobnie z wywyołaniem funkcji
+
+let num = 1234.56789;
+num.toFixed(2); // zwróci "1234.57", liczbę jako string z dwoma miejscami po przecinku
+let summary = num + 10; // num dalej jako prymityw number, 1244.56789
+
+
+let x = 4; // wartość x przypisana do 4
+
+// 4 + 1 da 5
+// wartość 4 jest już nie używana, pozostawiona dla garbage collectora do skasowania
+// x wskazuje teraz na wartość 5 
+x = x + 1; 
+
+var txt = "Witaj ";
+
+txt = txt + " świecie!";
+/*
+    1. wartość txt zostaje pobrana
+    2. " świecie!" jest dodane do wartości txt
+    3. Wynik łączenia tekstów zapisany jest w nowym miejscu w pamięci
+    4. txt wskazuje teraz na ten nowo powstały tekst w pamięci
+    5. początkowa wartość pozostawiona jest dla garbage collectora do skasowania
+*/
+
+var str = "Ala ma kota.";
+str[0] = "X"; // próba zmiany wartości pierwszej litery
+console.log(str); // "Ala ma kota"
+
+const arr = ["txt", 2, true];
+arr[0] = 97;
+console.log(arr[0]); // 97
+
+// zmiany typów prostych
+var data = 10;
+var info = data; // przypisanie wartośći z data do info
+console.log(data + ", " + info); // 10, 10
+data = 25; // zmiana wartości data zmienia tylko zmienną data
+console.log(data + ", " + info); // 25, 10
+
+
+let obj = { a: 10 };
+let data = obj; // data również ma referencję na obj
+console.log( obj.a + ", " + data.a); // 10, 10
+data.a = 25; // zmiana wartości a w obiekcie
+console.log( obj.a + ", " + data.a); // 25, 25
+
+
+var n = 10; 
+var typeInfo = typeof n; // number
+// typ number zapisany jako string w zmiennej typeInfo
+
+// typowy przypadek, sprawdzenie typu danej wartości
+if (typeof n === "number") {
+    console.log("n jest liczbą");
+}
+
+typeof 23; // number
+typeof "tekst"; // string
+typeof "45"; // string
+typeof true; // boolean
+typeof { data:10 }; // object
+typeof undefined; // undefined
+typeof 1n; // bigint
+typeof Symbol(); // symbol
+typeof function(){}; // function
+typeof []; // object
+
+// object w typeof dla null to błąd w JavaScript, który
+// nigdy nei zostanie poprawiony
+typeof null; // object
+
+
+var a;
+typeof a; // undefined
+// a jest zmienną niezdefiniowaną, jest zadeklarowana, ale nie ma wartości
+
+let a = 1; // number
+const b = 10.45; // number
+var d = 0xf; // format szesnastkowy (hexadecimal), 15
+
+parseInt("hello"); // zamiana tekstu a liczbę całkowitą, tuutaj błąd czyli NaN
+Math.sqrt(-1); // pierwiastek kwadratowy z -1 to NaN
+
+isNaN(Number.NaN); // true
+isNaN(NaN); // true
+isNaN(78); // false
+0/0; // NaN
+// do not use a == NaN or a != NaN
+
+var a = 1/0; // Infinity
+var b = -1 / 0; // -Infinity
+
+Number.isFinite(35); // true, jest to skończona liczba
+Number.isFinite(1/0); // false, gdy to jest nieskończoność, a nie liczba skończona
+
+Number.MAX_VALUE; // maksymalna pozytywna wartość
+Number.MIN_VALUE; // minimalna pozytywna wartość, najmniejsza wartość większa od zera
+Number.isNan(NaN); // czy jest NaN
+Number.parseFloat("4.678sdfsdf"); // zmiana stringa na liczbę dziesiętną: 4.678
+Number.parseInt("3453"); // liczba całkowita z stringa 3453
+Number.isInteger(10/5); // true
+Number.isInteger(10/3); // false
+2.2346.toFixed(3); // 2.235
+
+var v = 2.05 * 100; // 204.99999999999997 zamiast 205
+
+// Math.round zaokrągla do najbliższej liczby całkowitej
+Math.round(2.05 * 100); // 205
+Math.round(204.1234); // 204
+
+// toFixed zaokrągla do podanej ilości cyfr po przeninku
+v.toFixed(); // 205
+1.469.toFixed(2); // 1.47
+
+var a = 3.5937
+a.toFixed(); // 4
+a.toFixed(0); // 4
+a.toFixed(1); // 3.6
+a.toFixed(2); // 3.59
+a.toFixed(3); // 3.594
+a.toFixed(4); // 3.5937
+a.toFixed(5); // 3.59370
+
+// 4.toFixed(2); // błąd SyntaxError
+(4).toFixed(2); // 4.00
+0.4.toFixed(2); // 0.40
+
+Number.MAX_SAFE_INTEGER; // 9007199254740991
+Number.MIN_SAFE_INTEGER; // -9007199254740991
+Number.isSafeInteger( Math.pow(2,53) - 1 ); // true
+Number.isSafeInteger( Math.pow(2,53) ); // false
+
+
+const s = 'string w apostrofach';
+const str = "string za pomocą w cudzysłowie";
+const txt = `string
+w wielu
+liniach`;
+
+const str = "Witaj" + " świecie !"; // string z połączenia dwóch stringów
+let strLength = "Tekst".length; // ilość znaków, 5
+"".length; // pusty string, 0 znaków
+str[2]; // 3 znak: t
+str[str.length - 1]; // ostatni znak: !
+str.charAt(6); // ś 
+str.charCodeAt(6); // wartość UTF-16, Unicode w zakresie od 0 do 65535, ś to 347 
+
+var text = "Ala ma kota. Dodatkowo Ala ma psa.";
+var pos = text.indexOf("ma"); // pos = 4, znaki liczone od 0
+var pos2 = text.indexOf("ma", 5); // pos2 = 27
+var pos3 = text.indexOf("ma", 28); // pos3 = -1
+
+var str = "Dzień jak codzień";
+var strPos = str.lastIndexOf("jak", 10); // strPos = 6
+
+let re = /[A-Z]/g;
+let txt = "jakiś Tekst".search(re); // 6
+
+// trim kasuje białe znaki z początku oraz końca stringa
+"   Hello World! \n".trim(); 
+
+var b = 25;
+var a = `Tekst i wartość: ${b}`; // "Tekst i wartość: 25";
+var c = `Wartość wyrażenia: ${1 + 2 + 3} `; // "Wartość wyrażenia: 6"
+
+let upCase = "PewiEN teKSt.".toUpperCase(); // upCase = "PEWIEN TEKST."
+let lowerCase = upCase.toLowerCase(); // lowerCase = "pewien tekst."
+
+// concat
+let a = "text1";
+let b = a.concat(" text2");
+console.log("a"); // "text1"
+console.log(b); // "text1 text2"
+var c = b.concat(" text3").concat(" text4");
+console.log(c); // "text1 text2 text3 text4"
+
+// + operator
+var d = a + " other text"; 
+console.log(d); // "text1 other text"
+    
+// slice
+var str = "01234567";
+var a = str.slice(1, 6); // "12345"
+var b = str.slice(-1,8); // "7"
+var c = str.slice(-3); // "567"
+var d = str.slice(-3, -1); // "56"
+
+
+// substring
+var str = "012345678";
+var a = str.substring(3); // "345678"
+var b = str.substring(2, 5); // "234"
+
+// substr
+var str = "Ala ma kota.";
+var a = str.substr(1,4); // "la m"
+var b = str.substr(3); // " ma kota."
+var c = str.substr(-3); // ta. - ujemne liczą fragment od końca
+
+// replace 
+var str = "Kiwi jabłko cytryna cytryna";
+var a = str.replace("cytryna", "pomarańcza"); 
+console.log(a); // "Kiwi jabłko pomarańcza cytryna"
+
+// wyrażenia regularne
+var str2 = "Kiwi jabłko cytryna cytryna";
+var b = str2.replace(/cytryna/, "pomarańcza"); // zamiana pierwszego wystąpienia
+console.log(b); //  "Kiwi jabłko pomarańcza cytryna";
+var c = str3.replace(/cytryna/g, "pomarańcza"); // zamiana wszystkich wystąpień
+console.log(c); // Kiwi jabłko pomarańcza pomarańcza
+
+var txt = "Html CSS JavaScript PHP Python Sql";
+// aby zignorować wielkość znaków trzeba użyć /i  - ignor case
+var langs = txt.replace(/sql/i, "MongoDB");
+console.log(langs); // Html CSS JavaScript PHP Python MongoDB
+
+let str = "Jakiś Tekst"; 
+let ret = str.replace(/[A-Z]/g , "X"); // zamieni duże litery na X
+console.log(ret); // Xakiś Xekst
+
+
+// split
+var str = "A B C D 1 2 3 4";
+var data = str.split(" ");
+console.log(data.length); // 8
+console.log(data[2]); // C
+
+
+var str2 = "Skoda|Octavia|2012";
+var carDetails = str2.split("|"); // podział przez pipe
+console.log(carDetails[1]); // Octavia
+
+
+
+// lekcja 12 referencje do obiektów
+// przekazywanie argumentów funkcji przez wartość dla typów prostch, czyli ich kopie
+function passByValue(num, str) {
+    num = num + 10;
+    str = str + " !!!";
+    console.log("passByValue num:" + num + ", str:" + str);
+}
+
+let someNum = 12;
+let someStr = "Tekst";
+
+console.log("Przed wywołaniem someNum:" + someNum + " someStr:" + someStr); // przed wywołaniem 12, Tekst
+passByValue(someNum, someStr); // passByValue num: 22, str: Tekst!!!
+console.log("Po wywołaniu someNum:" + someNum + " someStr:" + someStr); // po wywołaniem 12, Tekst
+
+// 12 przekazywanie przez referencje
+function passByReference(arr, obj) {
+    arr.push("99");
+    obj.test = 88;
+}
+
+let testArr = [1,2];
+let testObj = { a: "info", b: 5 };
+
+passByReference(testArr, testObj);
+console.log("testArr: " + testArr + ", testObj.test:" + testObj.test); 
+// testArr: 1,2,99, testObj.test:88 
+
+
+// 13 typeof
+
+var data = 10;
+function info(a) {
+    if( typeof a == "number") {
+        console.log("a to liczba: " + a);
+    }
+    if( typeof a == "string") {
+        console.log("a to string: " + a);
+    }
+    if( typeof a == "object") {
+        console.log("a to object: " + a);
+    }
+}
+
+info(data); // a to liczba: 10
+info(null); // a to object: null
+
+
+//
+// boolean
+// 
+
+var flag = true;
+if( flag == true ) {
+    console.log("flag jest true"); // wyświetli do konsoli
+}
+if( flag ) { // skrótowo możemy napisać tak
+    console.log("flag jest true"); // wyświetli do konsoli
+}
+
+var flag = false;
+if( flag == true ) {
+    console.log("flag jest true"); // nie wyświetli w konsoli
+}
+if( flag ) { // skrótowo możemy napisać tak
+    console.log("flag jest true"); // nie wyświetli w konsoli
+}
+
+// falsy values, czyli wartości konwertowane do boolean dające false
+"" // pusty string
+0, -0
+0n // 0 jako BigInt
+NaN
+null
+undefined
+false
+
+var data = 0;
+if(data) console.log(" info 0"); // 0 konwertuje do false, więc NIE wykona się
+
+data = 1;
+if(data) console.log(" info 1"); // 1 konwertuje do true, więc wykona się
+
+if ("") { console.log(" nie wykona się "); }
+if (0) { console.log(" nie wykona się "); }
+if (NaN) { console.log(" nie wykona się "); }
+if (null){ console.log(" nie wykona się "); }
+if (undefined) { console.log(" nie wykona się "); }
+if (false) { console.log(" nie wykona się "); }
+if (document.all) { console.log(" nie wykona się, jedyny taki obiekt, wyjątek! "); }
+
+
+// truthly value, konwertowane na boolean daje true
+"tekst"
+34
+true
+[], [5,7,9] // tablice
+{}, {a: 34}, document // obiekty
+function test(){} // funkcje
+
+// wszystkie poniższe się wykonają
+if( "tekst" ) { console.log(" wykona się "); }
+if( 25 ) { console.log(" wykona się "); }
+if( true ) { console.log(" wykona się "); }
+if( [] ) { console.log(" wykona się "); }
+if( [1,2,3] ) { console.log(" wykona się "); }
+if( function() {} ) { console.log(" wykona się "); }
+if( document ) { console.log(" wykona się "); }
+
+// obiekty z "fałszywymi" wartościami są truthly
+var b = new Boolean(false);
+if(b) console.log("wykona się"); // ponieważ to obiekt
+
+var n = new Number(0);
+if(n) console.log("wykona się"); // ponieważ to obiekt
+
+var s = new String("");
+if(s) console.log("wykona się"); // ponieważ to obiekt
+
+
+// undefined
+var data;
+typeof data; // typ jest undefined
+
+// undefined jako element globalnego obiektu window
+console.log(window.undefined);
+
+// Uwaga, nie można tak robić, jako ciekawostka
+// można utworzyć zmienną lokalną undefined i nadać jej wartość
+function test() {
+    var undefined = 2; 
+    console.log("wartość:" + undefined);
+}
+
+test(); // wartość: 2
+
+typeof undefined; // "undefined"
+
+
+// null
+var data = 10; // przypisana wartość 10
+data = null; // teraz data nie ma wartości, jest null
+
+typeof null; // "object"
+
+// proste porównanie, tylko wartości, jeśli nie są tego samego typu 
+// to będzie konwersja
+if( null == undefined ) console.log("true, wykona się");
+
+// porównanie ścisłe, typy się nie zgadzają, więc nie równe
+if( null === undefined ) console.log("false, NIE wykona się");
+
+
+//
+// tablice
+//
+// tablica jako literał tablicowy
+var a = [1,2,"txt", ["a","b"] ]; 
+// tablica utworzona za pomocą konstruktora
+var b = new Array(10, 4, "txt"); 
+// jeśli pominiemy new również otrzymamy tablicę, 
+// konstruktor zachowa się jakby użyto new
+var c = Array(10, 4, "txt"); 
+
+// stworzenie tablicy z jednym elementem 5
+var data = Array.of(5); 
+console.log(data.length); // długość tablicy 1
+data[1] = "txt";
+data[2] = 10;
+data.push(99); // dodanie na koniec tablicy 99
+console.log(data); // [5, "txt", 10, 99]
+console.log(data.length); // długość tablicy 4
+
+
+// tablica i zmiana length, skasowanie elementów
+var a = [1,2,3,4,5,6,7,8,9];
+console.log(a.length); // 9 elementów
+a.length = 3;
+console.log(a.length); // 3 elementy
+console.log(a); // [1, 2, 3]
+
+// skasowanie elementu tablicy
+var a = [1,2,3,4,5,6,7,8,9];
+console.log(a.length); // 9
+delete a[2];
+
+// pod indeksem 2 będzie pusta pozycja
+console.log(a); // [1, 2, empty, 4, 5, 6, 7, 8, 9]  
+console.log(a.length); // 9
+
+console.log( 2 in a ); // false, brak takiego indeksu, operator in
+
+
+// zainicjowanie tablicy z 10 elementami wartością 7
+var arr = Array(10).fill(7);
+console.log(arr); // [7, 7, 7, 7, 7, 7, 7, 7, 7, 7]
+
+// pętla for i array
+var arr = ["txt", 22, [], 99];
+for( let i=0; i < arr.length; i++ ) {
+    let el = arr[i];
+    console.log(el);
+}
+// txt
+// 22
+// []
+// 99
+
+var data = ["jabłko", "cytryna", "kiwi"];
+data.forEach( function(item, index, array) {
+  console.log(index, item );
+} );
+// 0 "jabłko"
+// 1 "cytryna"
+// 2 "kiwi"
+
+
+// dodanie elementu na koniec tablicy
+let list = Array.of("dodge", "gmc");
+let newLength = list.push("pontiac");
+console.log(list); // ["dodge", "gmc", "pontiac"]
+console.log(newLength); // 3
+
+// również jako ostatni kolejny indeks
+list[list.length] = "ford";
+console.log(list); // ["dodge", "gmc", "pontiac", "ford"]
+
+
+// zabranie ostatniego elementu z tablicy 
+let list = Array.of("dodge", "gmc");
+let lastElement = list.pop();
+console.log(lastElement); // gmc
+console.log(list); // ["dodge"]
+console.log(list.length); // 1
+
+// łączenie tablic
+var a = [1, 2, 3, 4];
+var b = [5, 6, 7];
+var c = a.concat(b);
+console.log(c); // [1, 2, 3, 4, 5, 6, 7]
+var d = ["a", "b", "c"];
+c = a.concat(b, d); // połaczenie tablic a,b,d
+console.log(c); // [1, 2, 3, 4, 5, 6, 7, "a", "b", "c"]
+
+var a = [1, 2 ]; 
+var c = a.concat(25, [34, 23]);
+console.log(c); //  [1, 2, 25, 34, 23]
+
+var m = [1, 2 ]; 
+var n = m.concat( ["a", "b"], [34, 23] );
+console.log(n); // [1, 2, "a", "b", 34, 23]
+
+var z = [1, 2 ]; 
+var y = z.concat( ["a", "b", [333, 78] ] );
+console.log(y); //  [1, 2, "a", "b", Array(2)]
+
+// array.join() łączy elementy tablicy w string
+var data = [1,2,3,4,5,6];
+var result = data.join(); // "1,2,3,4,5,6"
+result = data.join("-"); // "1-2-3-4-5-6"
+
+delete data[2];
+result = data.join("|"); // "1|2||4|5|6"
+
+
+// array.reverse()
+var arr = Array(1,2,3,4,5,6,7);
+var reversed = arr.reverse();
+console.log(reversed); // [7, 6, 5, 4, 3, 2, 1]
+
+console.log(arr); // [7, 6, 5, 4, 3, 2, 1]
+
+
+// array.slice()
+var arr = ["jabłka", "kiwi", "cytryna", "pomarańcza", "truskawki"];
+// pobiera 2 ostatnie elementy, od 3 indeksu do końca tablicy
+var arrFragment = arr.slice(3);
+console.log(arrFragment); // ["pomarańcza", "truskawki"]
+
+var arr2 = arr.slice(2, 4);
+console.log(arr2); // ["cytryna", "pomarańcza"]
+
+console.log( arr.slice(1, 5) ); // ["kiwi", "cytryna", "pomarańcza", "truskawki"]
+
+
+// array.shift zwraca pierwszy element, modyfikuje tablicę
+var arr = ["dodge", "ford", "jeep"];
+var car = arr.shift();
+console.log(car); // "dodge"
+console.log(arr); // ["ford", "jeep"]
+
+var fruits = ['cytryna'];
+var newLength = fruits.unshift( "truskawki", "gruszki" );
+console.log( fruits ); // ["truskawki", "gruszki", "cytryna"]
+
+
+// array.splice()
+var months = ["styczeń","luty", "kwiecień", "maj"];
+// dodanie "marzec" na drugi indeks tablicy, 0 elementów jest skasowanych
+months.splice(2, 0, "marzec");
+console.log(months); // ["styczeń", "luty", "marzec", "kwiecień", "maj"]
+
+// skasowanie jednego elementu w indeksie 0 
+// i dodanie na jego miejsce tekstu
+var deletedElement = months.splice(0, 1, "test"); 
+console.log(months); // ["test", "luty", "marzec", "kwiecień", "maj"]
+console.log(deletedElement); //  ["styczeń"]
+
+var arr = ["a", "b", "c", "d", "e"];
+// skasowanie jednego elementu w indeksie 2 czyli c
+// i wrzucenie X,Y,Z w to miejsce
+arr.splice(2, 1, "X", "Y", "Z");
+console.log(arr); // ["a", "b", "X", "Y", "Z", "d", "e"]
+
+var arr = ["a", "b", "c", "d", "e"];
+// kasuje 1 element z indeksu (arr.length - 2)
+var removed = arr.splice(-2, 1);
+console.log(arr); // ["a", "b", "c", "e"]
+console.log(removed); // ["d"]
+
+// array.indexOf - wyszkuje element i zwraca numer indeksu
+var months = ["styczeń","luty", "marzec", "kwiecień", "maj"];
+var pos = months.indexOf("kwiecień");
+console.log(pos); // 3
+
+// array.lastIndexOf - wyszkuje element i zwraca numer indeksu
+var months = ["styczeń","luty", "marzec", "marzec", "kwiecień", "maj"];
+var pos = months.lastIndexOf("marzec", 5);
+console.log(pos); // 3
+
+
+// array.sort() - alfabetyczne sortowanie rosnącą
+const strArr = ["Kasia", "Rafał", "Basia", "Aga", "Zuza" ,"Monika"];
+const sortedStr = strArr.sort();
+console.log(sortedStr); // ["Aga", "Basia", "Kasia", "Monika", "Rafał", "Zuza"]
+
+// sortowanie w porządu malejącym alfabetycznie
+var reversed = strArr.sort().reverse();
+console.log(reversed); // ["Zuza", "Rafał", "Monika", "Kasia", "Basia", "Aga"]
+
+// domyślnie sortowanie liczb nie zdaje egazaminu
+const numbers = [44, 35, 999, 123, 1111 ];
+const sortedNums = numbers.sort();
+console.log(sortedNums); // [1111, 123, 35, 44, 999]
+
+// sortowanie liczb rosnąco
+function compareNumbers(a, b) {
+  // a=5, b=7
+  // 5 - 7 = -1   a mniejsze od b
+  return a - b;
+}
+
+// prawidłowe srtowanie liczb rosnąco
+const numbers = [44, 35, 999, 123, 1111 ];
+const sortedNums = numbers.sort(compareNumbers);
+console.log(sortedNums); // [35, 44, 123, 999, 1111]
+
+
+// malejąco
+const reversed = numbers.sort(compareNumbers).reverse(); // [1111, 999, 123, 44, 35]
+
+
+
+// array.map - wywołuje funckę na każdym elemnecie tablicy, zwraca wynik w tablicy, nie zmienia oryginału
+var nums = [64, 16, 25, 49];
+var result = nums.map(Math.sqrt);
+console.log(result); // [8, 4, 5, 7]
+
+let data = ["Kasia", "Rafał", "Basia", "Aga", "Zuza" ,"Monika"];
+data = data.sort();
+data = data.map( function(currentValue, index, arr){
+    return (index + 1) + ": " + currentValue;
+});
+
+console.log(data); // ["1: Aga", "2: Basia", "3: Kasia", "4: Monika", "5: Rafał", "6: Zuza"]
+
+
+// array.filter - filtruej tablice, jeś wynik true uwzględnia w zwracanej tablicy
+var ageArr = [65, 7, 28, 17, 43, 18];
+var filtered = ageArr.filter( function(v, index, arr){
+    return v >= 18;
+});
+
+console.log(filtered); // [65, 28, 43, 18]
+
+var words = ["dodge", "gmc", "pontiac", "ford", "chrysler"];
+var filteredWords = words.filter( function(v, index, arr){
+    return v.length >= 4;
+});
+
+console.log(filteredWords); // ["dodge", "pontiac", "ford", "chrysler"]
+
+
+// array.reduce()
+const data = [15, 35, 45, 5];
+const reduced = data.reduce( function( accumulator, currentValue, index, arr) {
+    return accumulator + currentValue;
+});
+console.log(reduced); // 100
+
+// jako arrow function - funkcja strzałkowa
+const reduced2 = data.reduce( (acc, v) => acc + v );
+console.log(reduced2); // 
+
+// redukuje od prawej do lewej
+const dataTab = [ ["a", "b"], [1, 2, 3], ["X"] ];
+const red3 = dataTab.reduceRight( (acc, v) => acc.concat(v) );
+console.log(red3); // ["X", 1, 2, 3, "a", "b"]
+
+// array.some() - czy choć jedna wartośc sełnia warunek
+const data = [53, 79, 100, 99];
+const resultFlag = data.some( function(currentValue, index, arr){
+    return currentValue >= 100;
+});
+console.log(resultFlag); // true
+
+const res = data.some( x => x >= 100);
+console.log(res); // true
+
+// array.every()
+const data = [33, 25, 12, 64];
+const resultFlag = data.every( function(currentValue, index, arr){
+    return currentValue >= 18;
+});
+console.log(resultFlag); // false
+
+const res = data.every( x => x >= 18);
+console.log(res); // false
+
+
+// array.find()
+const objects = [ {id:10}, {id:20}, {id:178} ];
+let result = objects.find( function(element, index, arr){
+    return element.id == 178;
+});
+
+console.log(result); // {id:178}
+
+let res2 = objects.find(x => x.id == 20);
+console.log(res2); // {id:20}
+
+
+// array.findIndex()
+const objects = [ {id:10, name:"Karol"}, {id:20, name: "Ania"}, {id:178, name: "Ola"} ];
+let result = objects.findIndex( function(element, index, arr){
+    return element.name == "Ania";
+});
+
+console.log( "Indeks rekordu Ani: " +result+ ", "+  objects[result].name); // Indeks rekordu Ani: 1, Ania
+
+// array.includes()
+const tab = ["jabłka", "gruszki", "cytryny", "truskawki"];
+var res = tab.includes("gruszki");
+console.log("Są gruszki? " + res); // Są gruszki? true
+
+var res2 = tab.includes("gruszki", 2);
+// Są gruszki za 2-gim indeksem? false
+console.log("Są gruszki za 2-gim indeksem? " + res);
+
+
+// operatory przypisania
+let a = 10; //  = najprostszy operator przypisania
+a += 5; // operator przypisania oraz arytmetyczny, przypisuje do a wynik dodania 5 do a
+a -= 3; // odjęcie 3 z a i przypisanie do a, wynik 12
+a *= 2; // pomnożenie a przez dwa i przypisanie do a, wynik 24
+a /= 3; // podzielenie a przez 3 i przypisanie wyniku do a, rezultat 8
+a /= 5; // reszta z dzielenia z przez 5 i przypisanie, rezultat 3
+a **= 3; // 3 do 3 potęgi, wynik 27
+
+// inne operatory przypisania np bitowe itd: <<=, >>=, &=, ^=, |=, &&=, ||=
+
+
+// operatory arytmetyczne
+b = 3 + 5; // 8
+b = 7 - 3; // 4
+b = 2 * 10; // 20
+b = 22 / 11; // 2
+b++; // operator inkrementacji, zwiększa o jeden (inkrementuje zmienną b)
+b--; // operator dekrementacji, zmniejsza o jeden (dekrementuje zmienną b)
+
+a++; // operator inkrementacji 
+a = 1 + 2; // 
+
+
+// operator porównania
+8 == 3; // równa się, false
+8 == 8; // równa się, true
+8 != 3; // nie równa się, true
+8 != 8; // nie równa się, false
+3 < 7; // mniejsze, true
+3 > 7; // większe, false
+5 <= 5; // mnniejsze lub równa się, true
+6 >= 9; // większe lub równa się, false
+
+let a = 10, b = 6;
+if( a > b ) console.log( "wykona się, 10 większe od 6");
+
+let c = 24, d = 7;
+if( c != d ) console.log( "wykona się, 24 nie równe 7");
+
+let e = 3, f = 16;
+if( 3 >= f ) console.log( "nie wykona się, 3 nie jest mniejsze lub równe 16");
+
+
+// operator porównanie ścisłe
+// 
+
+
+// luźne porównanie róznych typów, number i string
+// string zostanie przekszatłcony na number, nastąpi konwersja
+if( 5 == "5" ) console.log("true, ta sama wartość 5"); 
+
+// ścisłe porównanie, 
+// typy się nie zgadzają, więc 
+if( 5 === "5" ) console.log("false, różne typy"); // nie wykona się, number i string
+
+// typy się zgadzają, więc się wykona
+if( 5 === 5 ) console.log("true, te same typy i wartość "); 
+
+
+// przy porównaniu liczby i obiektu nastąpi próba przekształcenia obiektu w liczbę,
+// jeżeli nie jest to możliwe przyjmie wartość NaN
+if( 10 === {a:5} ) console.log("false, obiekt i number to dwa różne typy"); // false, nie wykona się
+
+
+// przy porównaniu dwóch obiektów porównywane są ich dwa adresy w pamięci,
+// jeśli się zgadzają to daje true
+let a = {data: 22};
+if(a == a) console.log("true"); // true, te same adresy w pamięci
+
+let c = {data: 22};
+let d = {data: 22};
+if(c == d) console.log("false"); // false, różne adresy, więc różne obiekty 
+
+// operatory logiczne
+if( true && true ) console.log("ok"); // wykona się, bo obie strony dają true
+
+if( (10 > 7) && (3 <= 3) ) console.log("true"); // wykona się, obie strony dają true
+
+if( (10 > 7) && false ) console.log("false"); // nie wykona się 
+
+if( (10 > 7) && false ) console.log("wykona się"); // nie wykona się
+
+
+// || suma logiczna OR
+if( true || false ) console.log("wykona się");
+if( true || true ) console.log("wykona się");
+if( false || false ) console.log("nie wykona się");
+
+if( 10 > 5 || 3 == 7 ) console.log("wykona się");
+
+// ! NOT
+if(10 > 7) console.log("wykona się"); // true
+if( !(10 > 7) ) console.log("nie wykona się"); // true zostanie odrówcone przez ! na false
+
+
+// operacje na stringach, operator konkatenacji
+let result = "Witaj " + " świecie!";
+result += "!!"; // "Witaj Świecie!!!"
+
+let age = 18;
+let data = ( age >= 18) ? "dorosły" : "nieletni";
+
+// to samo co 
+if( age >= 18 ) {
+    data = "dorosły";
+} else {
+    data = "nieletni";
+}
+
+// operator przecinka
+
+for(let i = 0, j = 5; i < 5; i++, j-- ){
+    console.log("i:" + i + " j:"+j);
+}
+
+/*
+i:0 j:5  
+i:1 j:4 
+i:2 j:3  
+i:3 j:2  
+i:4 j:1
+*/
+
+
+// inkrementacja i dekrementacja
+// a++
+function printVar(data) {
+    console.log("Wartość w funkcji: " + data);
+}
+
+let a = 1;
+console.log("Przed wywołaniem: " + a); // Przed wywołaniem: 1
+printVar(a++); // Wartość w funkcji: 1
+console.log("Po wywołaniu: " + a); // Po wywołaniu: 2
+
+
+// ++a
+function printVar(data) {
+    console.log("Wartość w funkcji: " + data);
+}
+
+let a = 1;
+console.log("Przed wywołaniem: " + a); // Przed wywołaniem: 1
+printVar(++a); // Wartość w funkcji: 2
+console.log("Po wywołaniu: " + a); // Po wywołaniu: 2
+
+// unary operator delete
+let obj = { str: "text" };
+console.log(obj.str); // "text"
+delete obj.str;
+console.log(obj.str); // undefined
+
+var c = +"27"; // operator + konwertuje operand na liczbę, c=27
+var d = -"27"; // number: -27
+var e = void 0; // void wywołuje wyrażenie i zwraca undefined
+typeof 123.45; // number
+
+// operatory relacyjne
+let obj = { num: 10 };
+if( "num" in obj) console.log("zmienna num w obj"); // zmienna num  jest w obj
+
+let arr = ["one", "two", "three"];
+if( 1 in arr ) console.log("indeks 1 jest w tablicy");
+if( "length" in arr ) console.log("właściwość length jest w tablicy");
+
+// instanceof
+var data = new Date(2020,12,20);
+if( date instanceof Date) {
+    // date jest obiektem typu Date
+}
+
+ 
+
+
+
+// niejawna konwersja, liczby na string
+if( "1" + 0 == "10" ) console.log("true, liczba 0 na string"); // wykona się
+if( 1 + "0" === "10" ) console.log("true, liczba 1 na string"); // wykona się
+
+// jawna konwersja, liczby na string
+let z = String(22); // "22"
+let n = String(11.3); // "11.3"
+
+// string na liczbę, niejawna konwersja
+if( 10 - "4" ===  6 ) console.log("wykona się");
+let c = "" + 111; // "111"
+let g = +"24"; // 24
+let data = -"67";// 67
+
+// jawne konwersje
+let num = Number("10"); // num = 10
+let b = parseInt("985"); // b = 985
+// zawsze używajmy radix, 10-decimal, 16-hex, 8-octal
+let i = parseInt("0", 10); // b = 0
+let f = parseFloat("3.45"); // f = 3.45
+
+// string na boolean
+if( "test" ) console.log("string na boolean"); // wykona się
+if( "false" ) console.log("string na boolean"); // wykona się
+if( "0" ) console.log("string na boolean"); // wykona się
+if( !"0") console.log("nie wykona się"); // 0 na true i odwrócone na false
+if( !"false" ) console.log("nie wykona się"); // txt na true i odwrócone na false
+
+
+// obiekt na string
+if( {} == "[object Object]" ) console.log("obiekt na string"); // wykona się
+
+// podwójna negacja
+!1; // false, 1 skonwertowane na true, odwrócone na false
+!!1; // true
+
+!0; // true
+// falsy values na false
+!!0; // false
+!!-0; // false
+!!0n; // false
+!!undefined; // false
+!!null; // false
+!!""; // false
+!!NaN; // false
+
+// truthy values na true
+!!1; // true
+!![]; // true
+!!{}; // true
+!!"txt"; // true
+
+
+// jawne konwersje na boolean
+Boolean("true"); // true
+Boolean("false"); // true
+Boolean("1"); // true
+Boolean("0"); // true
+Boolean(-1); // true
+Boolean(1); // true
+Boolean({}); // true
+Boolean([]); // true
+
+Boolean(0); // false
+Boolean(""); // false
+Boolean(null); // false
+Boolean(undefined); // false
+
+// wszystkie poniższe instrukcje if się wykonają
+if (true) console.log("wykona się");
+if ([]) console.log("wykona się");
+if ({}) console.log("wykona się");
+if (35) console.log("wykona się");
+if ("0") console.log("wykona się");
+if (new Date()) console.log("wykona się");
+if ("false") console.log("wykona się");
+if (-11) console.log("wykona się");
+if (15n) console.log("wykona się");
+if (4.23) console.log("wykona się");
+if (-4.23) console.log("wykona się");
+if (Infinity) console.log("wykona się");
+if (-Infinity) console.log("wykona się");
+
+// konwersja tablicy na string
+const arrStr = [1, 2, 3, 4].join(","); // "1,2,3,4"
+
+// reduce do zamiany tablicy na string: "a-b-c"
+const data = ["a", "b", "c"].reduce( function(acc, currentValue, index){
+    return acc + "-" + currentValue;
+});
+
+[1,2,3,4].toString(); // "1,2,3,4"
+
+// konwersja liczb
+// Math.floor() zwraca największą liczbę całkowitą 
+// mniejszą lub równą podanej liczbie
+Math.floor(4.8); // 4
+Math.floor(3.1); // 3
+
+Math.floor(-4.8); // -5
+Math.floor(-3.1); // -4
+Math.floor(-3.0); // -3
+
+// Math.ceil() zaokrągla do góry do najbliższej liczby całkowitej
+Math.ceil(.01); // 1
+Math.ceil(1.01); // 2
+Math.ceil(5); // 5
+Math.ceil(8.0001); // 9
+Math.ceil(-8.0001); // -8
+
+
+// Math.round() - do najbliższej liczby całkowitej
+Math.round(0.8); // 1
+Math.round(0.1); // 0
+
+Math.round(7.5001); // 8
+Math.round(5.5); // 6
+
+Math.round(-3.3); // -3
+Math.round(-3.8); // -4
+
+
+// Math.trunc() - obcina część dziesiętną
+Math.trunc(12.34); // 12
+Math.trunc(7.99); // 7
+Math.trunc(-3.23); // -3
+Math.trunc(10); // 10
+
+
+
+
+
+//
+// Scope lokalny i globalny
+//
+var someGlobal = "Ala ";
+
+function test (param) { // argument jest zmienną lokalną
+    var txt = " kota"; // zmienna lokalna
+    console.log( someGlobal // dostęp do zmiennej globalnej wewnątrz funkcji
+                + param 
+                + txt ); 
+}
+
+test("ma"); // "Ala ma kota"
+console.log(txt); // ReferenceError: txt is not defined
+
+// przesłonięcie nazwy globalnej zmiennej
+var someData = 99;
+
+function test() {
+    var someData = 1000;
+    console.log("lokalne someData:" + someData);
+    console.log("globalne someData:" + window.someData);
+}
+
+test();
+// lokanle someData: 99
+// globalne someData: 1000
+
+console.log(someData); // 99
+
+// brak var przy deklaracji zmiennej wewnątrz funkcji stworzy zmienną globalną!
+function test() {
+    var a = 5;
+    b = 10; // zmienna globalna!
+}
+
+console.log(b); // ReferenceError: b is not defined
+test();
+console.log(b); // 10
+console.log(window.b); // 10
+
+// strict mode, opcjonalny wprowadzony w ES5 pozwala na uniknięcie takich błędów
+function doSomething() {
+    "use strict"; // strict mode włączony na poziomie funkcji
+    var a = 5;
+    b = 10; // próba stworzenia zmiennej globalnej w strict mode 
+}
+
+doSomething();
+// kończy się błędem
+// Uncaught ReferenceError: assignment to undeclared variable b
+
+
+// zmiana wartości zmiennej globalnej wewnętrz funkcji
+var someData = 10;
+
+function doSth() {
+    someData = 50;
+}
+
+doSth();
+console.log(someData); // 50
+
+
+// scope a pętla for
+for( var i=0; i < 5; i++ ) {
+    // jakieś działania
+}
+
+console.log(i); // dostęp do zmiennej i poza ciałem pętli, 5
+
+
+// scope a if
+
+if(1 == 1) {
+    var someVarData = 8;
+}
+
+console.log(someVarData); // 8
+
+
+// let const
+if(1 == 1) {
+    let someLetData = 8; 
+}
+
+// Uncaught ReferenceError:
+//  someLetData is not defined
+console.log(someLetData);  
+
+// let a pętla for
+for( let i=0; i < 5; i++ ) {
+    // jakieś działania
+}
+
+console.log(i); // ReferenceError: i is not defined
+
+// ponowna deklaracja let jest możliwa
+var someVar = 1;
+var someVar = 10; // nie  ma błędu
+console.log(someVar); // 10
+
+let someLet = 1;
+// powstanie błąd
+// Uncaught SyntaxError: 
+// redeclaration of let someLet
+let someLet = 10; 
+console.log(someLet);  
+
+
+// var i let w bloku
+
+{
+    var x = 7;
+}
+console.log(x); // 7
+
+{
+    const y = 9;
+}
+console.log(y); // ReferenceError: y is not defined
+
+// ponowne użycie let
+
+let x = 5;
+{
+    let x = 99;
+    x = 100; // przypisanie do lokalnego let
+    console.log(x); // 100
+}
+console.log(x); // 5
+
+
+let x = 5;
+{ 
+    x = 100; 
+    console.log(x); // 100
+}
+console.log(x); // 100
+
+
+// 
+// hoisting
+//
+
+function test() {
+    console.log( data ); // undefined
+    var data = 4; 
+    console.log( data ); // 4
+}
+
+// undefined
+// 4
+test();
+
+// to samo co
+function test() {
+    var data;
+    console.log( data ); // undefined
+    data = 4; 
+    console.log( data ); // 4
+}
+
+// undefined
+// 4
+test();
+
+
+
+// hoisting a deklaracje funkcji
+
+test(5,4); // Wynik: 20
+
+function test( a, b ) {
+    console.log("Wynik: " + (a * b) );
+}
+
+
+// to samo co
+function test( a, b ) {
+    console.log("Wynik: " + (a * b) );
+}
+
+test(5,4); // Wynik: 20
+
+
+
+// wyrażenie funkcyjne
+
+exprTest(5,4); // Uncaught TypeError: exprTest is not a function
+
+var exprTest = function( a, b ) {
+    console.log("Wynik: " + (a * b) );
+}
+
+// hoisting, a działania
+var a = 10;
+var b = 5;
+console.log(a + b); // 15
+
+ 
+var a = 10;
+console.log(a + b); // 10 + undefined = NaN
+var b = 5;
+
+// to samo co 
+
+var a = 10;
+var b;
+console.log(a + b); // 10 + undefined = NaN
+b = 5;
+
+// hoisting a let i const
+function test() {
+    // // Uncaught ReferenceError: Cannot access 'data' before initialization
+    console.log(data); 
+
+    let data = 4; 
+    console.log(data); 
+}
+
+test();
+
+// Temporal Dead Zone
+// wszystko działa
+let x = 5;
+{ 
+    x = 100; 
+    console.log(x); // 100
+}
+console.log(x); // 100
+
+// błąd
+let x = 5;
+{ 
+    x = 100; // ReferenceError: Cannot access 'x' before initialization
+    let x = 7;
+    console.log(x); 
+}
+console.log(x); 
+
+// hoisting let i const
+console.log(x);
+
+// Uncaught ReferenceError: can't access lexical declaration 'y' before initialization
+// albo
+// Uncaught ReferenceError: y is not defined
+console.log(y);
+
+var x = 5;
+let y = 10;
+
+
+
+
+
+//
+// Obiekty
+// 
+
+var o = {}; // pusty obiekt
+typeof o; // "object"
+
+var rect = { x:10, y0, width: 100, height: 200 }
+
+var arr = [10, 20, "c"]; // literał tablicowy
+typeof arr; // "object"
+
+var car = {
+    name: "Chevrolet",
+    model: "Mako Shark",
+    year: 1965,
+    details: {
+        type: "concept car",
+        codeName: "XP-755"
+    },
+    information: function () {
+        console.log(this.name, this.model, this.details.type);
+    }
+}
+
+car.information(); // Chevrolet Mako Shark concept car
+
+// obiekt a funkcja konstruująca
+let plane = new Object();
+plane.name = "Lockheed SR-71";
+plane.codeName = "BlackBird";
+plane.properties = { maxSpeed: "3.2 Mach"};
+plane.printInfo = function () {
+    console.log(this.name, this.codename, this.peoperties.maxSpeed);
+} 
+
+// przykłady funkcji konstruujących
+var d = new Date(2030, 12, 29);
+var arr = new Array(10, 24, 53); // [ 10, 24, 53 ]
+var str = new String(10); // "10"
+var n = new Number("1234");
+var b = new Boolean({}); // true
+
+// własna funkcja konstruująca
+function Car(brand, model) {
+    this.brand = brand;
+    this.model = model;
+    this.printInfo = function() {
+        console.log(this.brand, this.model)
+    }
+}
+
+const car = new Car("Plymouth", "Baracuda");
+car.printInfo(); // Plymouth Baracuda
+
+
+// wywołanie bez konstruktora powoduje błędy
+let car = Car("Plymouth", "Baracuda"); // brak new !
+car.printInfo(); // Uncaught TypeError: car is undefined
+// obiekt window ma właściwości brand, model
+console.log(window.brand); // Plymouth
+
+// wymuszenie użycia konstruktora
+function Car(brand, model) {
+    // czy this wskazuje na instancję Car, jeśli nie to tworzy nową z new
+    if ((this instanceof Car) === false) {
+        return new Car(brand, model);
+    }
+    this.brand = brand;
+    this.model = model;
+    this.printInfo = function() {
+        console.log(this.brand, this.model)
+    }
+}
+
+const car1 = Car("GMC", "Syclone");
+const car2 = new Car("Ford", "Bronco");
+
+
+
+
+// Object.create() tworzy obiekt z prototypem jako przekazany obiekt
+let person = { name: "Andy", age: 30 };
+
+var obj = Object.create(person);
+console.log(obj.name); // Andy
+
+// tworzy obiekt bez prototypu
+let obj = Object.create(null);
+
+
+// dostęp do właściwości obiektu
+var obj = { 
+    name: "test", 
+    size: 10,
+    log: function(){
+        console.log(this.name, this.size);
+    } };
+
+console.log( obj.name ); // "test"
+console.log( obj["size"] ); // 10
+
+obj.codeName = "XP"; // dodanie nowej właściwości
+obj["codeName"] = "GD";
+obj["log"](); // test 10
+
+
+delete obj.name; // skasowanie właściwości
+delete obj["size"];
+
+
+// kolejne właściwości
+var obj = { 
+    name: "test",  size: 10,
+    log: function(){
+        console.log(this.name, this.size);
+ } };
+
+obj["strange things"] = 123;
+console.log(obj["strange things"]); // 123
+
+// dostęp do zmiennej która nie istnieje da undefined
+obj.notExisting; // undefined
+
+
+// Sprawdzanie istnienia właściwości w obiekcie
+var plane = { name: "BlackBird", brand:"Lockheed" };
+
+if("name" in plane) console.log(plane.name); // BlackBird
+if("model" in plane) console.log(plane.model); // nie wykona się
+
+// czy obiekt plane ma własną właściwość "brand"
+if(plane.hasOwnProperty("brand")) console.log(plane.brand); // Lockheed
+
+plane.hasOwnProperty("hasOwnProperty"); // false
+
+// prymitywy przekazywane przez wartość
+var num = 10;
+var secondNum = num; // przypisanie liczby, wartość 10
+num++;
+console.log(num, secondNum); // 11, 10 - dwie różne liczby
+
+// obiekty przekazywane przez referencję
+var obj = { num:5 };
+var data = obj;
+obj.num++;
+console.log( obj === data); // true, te same obiekty
+
+// prymityw
+const a = 10;
+a = 20; // błąd: Uncaught TypeError: Assignment to constant variable.
+
+const b = { data: 10 };
+b.data = 20;
+b = { info:99 }; // błąd: Uncaught TypeError: Assignment to constant variable.
+
+
+// Enumeracja obiektu
+var obj = { a:10, b: "text", print: function(){} }
+
+for (prop in obj) {
+    // zawsze sprawdzamy czy są to właściwości tego obiektu
+    if(obj.hasOwnProperty(prop)) { 
+        console.log("property: " + prop + " wartość: " + obj[prop]);
+    } 
+}
+
+/*
+    property: a wartość: 10
+    property: b wartość: text
+    property: print wartość: function(){}
+*/
+
+
+// Object.keys() zwraca tablicę kluczy obiektu
+var obj = { b:34, c: "str", printInfo: function(){} }
+const objKeys = Object.keys(obj);
+
+for (let i=0; i < objKeys.length; i++) {
+    console.log("property: " + objKeys[i] + " wartość: " + obj[ objKeys[i] ]);
+}
+
+// property: b wartość: 34
+// property: c wartość: str
+// property: printInfo wartość: function(){}
+
+
+
+
+var obj = { b:34, c: "str", printInfo: function(){} }
+const objValues = Object.values(obj);
+
+for (let i=0; i < objValues.length; i++) {
+    console.log("i:" + i + ", wartość: " + objValues[i] );
+}
+
+// i:0, wartość: 34
+// i:1, wartość: str
+// i:2, wartość: function(){}
+
+
+
+var obj = { data:99, txt: "info", printData: function(){ console.log("data"); } }
+const objEntries = Object.entries(obj);
+
+for( [key, value] of objEntries ) {
+    console.log("key: " + key + ", value: " + value);
+}
+
+// key: data, value: 99
+// key: txt, value: info
+// key: printData, value: function(){ console.log("data"); }
+
+
+// Object.assign() - płytka kopia ES6
+const sourceObj = { data: 10, str:"txt", obj: {a:5} };
+let clone = { info: 88 };
+let result = Object.assign( clone, sourceObj );
+
+sourceObj === clone; // false
+clone === result; // true
+
+result; // { info: 88, data: 10, str: "txt", obj: {a:5} }
+result.obj === sourceObj.obj; // true, niestety współdzielą ten sam obiekt
+
+// Object.assign(); // obiekt z wielu obiektów
+var o1 = {a:1};
+var o2 = {b:2};
+var o3 = {c:"text"};
+var o4 = {test: function(){}};
+
+var result = Object.assign({}, o1, o2, o3, o4);
+result; // Object { a: 1, b: 2, c: "text", test: test() }
+
+
+
+
+
+// deep copy za pomocą JSON.stringify i json.parse
+var source = { str:"txt", num: 10, date: new Date(2030,12,12), obj: {x:7} };
+var copy = JSON.parse( JSON.stringify(source) );
+
+console.log(copy === source); // false, oddzielny obiekt
+console.log(copy.obj === source.obj); // false, oddzielny obiekt
+typeof source.date; // "object"
+typeof copy.date; // "string"
+console.log(copy.date); // 2031-01-11T23:00:00.000Z
+
+
+
+// getter i setter
+
+const user = {
+    _userName : null,
+
+    set name(n) {
+        if (typeof name === "string") {
+            this._userName = n[0].toUpperCase() + n.substr(1, n.length);
+        }
+    },
+
+    get name() {
+        return this._userName;
+    }
+}
+
+user.name = "marek";
+console.log(user.name); // Marek
+
+
+
+// defineProperty
+var someObj = { a: 5};
+
+Object.defineProperty( someObj, "propName", {
+        value: 20,
+        writable: true, // false oznacza, że zmienna tylko do odczytu
+        configurable: true, // moze być zmieniona później np skasowana
+        enumerable: true // może być odczytana w pętli for in
+    }
+ );
+
+ console.log(someObj.propName); // 20
+ delete someObj.propName; 
+ console.log(someObj.propName); // undefined
+
+//
+ // obiekty ćwiczenia
+//
+
+function createPlane(planeModel, planeYear, planeBrand) {
+    return  {
+        model: planeModel,
+        year: planeYear, 
+        brand: planeBrand,
+        printInfo: function() {
+            console.log(this.model, this.brand, this.year);
+        }
+    };
+}
+
+let b = createPlane("747", 1969, "Boeing");
+b.printInfo();
+let a = createPlane("AN-225", 1990, "Antonov");
+a.printInfo();
+
+
+
+//
+function Car(carBrand, carModel, carYear) {
+    if((this instanceof Car) === false ) 
+        return new Car(carBrand, carModel, carYear);
+
+    this.brand = carBrand;
+    this.model = carModel;
+    this.year = carYear;
+    this.printInfo = function () {
+        console.log(this.brand, this.model, this.year);
+    }
+}
+
+Car.prototype.test = 10;
+
+var someCar = new Car("sdf","sdf", 1999);
+
+// poda rownież test z prototypu
+for (prop in someCar) {
+    console.log(prop);
+}
+
+// ale hasOwnProperty zapewnia tylko właściwości, które faktycznie są w obiekcie, bez test
+for (prop in someCar) {
+    if(someCar.hasOwnProperty(prop)) console.log(prop);
+}
+
+
+ // 
+ // Funkcje
+ // 
+
+// function statement
+function test (arg) {
+    console.org(arg);
+}
+
+// function expression
+var test = function (arg) {
+    return arg * 2;
+}
+ 
+// zakres lokalny czyli funkcji
+function test(arg) {
+   var localVar = 10;
+   console.log(arg, localVar);
+}
+
+test(5);
+console.log(arg, localVar); // Uncaught ReferenceError: arg is not defined
+
+var someGlobal = "text";
+
+function foo(arg) {
+    var local = 5;
+
+    function nested() {
+        var c = 10;
+
+        console.log(someGlobal); // text
+        console.log(arg); // 99
+        console.log(local); // 5
+        console.log(c); // 10
+    }
+    nested();
+}
+
+foo(99);
+
+
+// argumenty funkcji
+function foo( num, o, u) {
+    num = 10; // prymitywy przekazywane przez wartość
+    o.data = 20; // obiekt przez referencję
+    u = { name: "Daniel"};
+}
+
+var primitive = 35;
+var obj = {data: "txt"};
+var user = { name: "Ania" };
+
+foo(primitive, obj);
+console.log("primitive:" + primitive); // 35
+console.log("obj.data: " + obj.data); // 20, obiekt zmieniony
+console.log("user.name: " + user.name); // Ania, referencja bez zmian
+
+// argumenty funkcji
+function test(a, b, c) {
+    console.log(a, b, c);
+    console.log( arguments[0] == a ); // true
+    console.log( arguments[1] == b ); // true
+    console.log( arguments[2] == c ); // true
+    console.log( arguments[3] ); // 15
+}
+
+test(1, 5, 10, 15);
+
+function test(a,b) {
+    for(let i=0; i < arguments.length; i++) 
+        console.log( i+": " + arguments[i] );
+}
+
+
+
+
+
+
+
+
+
+
+// rest parametr i spread operator
+function sumAll(...params) {
+    console.log("Parametry funkcji: " + params)
+    return params.reduce( function(acc, value) {
+        return acc + value;
+    } );
+}
+
+// Parametry funkcji: 10,20,30,40
+// 100
+console.log( sumAll(10, 20, 30, 40) );
+
+function addNums(x, y) {
+    return x + y;
+}
+ 
+// przekazanie tablicy do funkcji
+var result = addNums(...[1, 2]);
+
+
+
+// obiekt jako argumenty
+function foo(data, info, str, num1, obj1, addr1, addr2){ }
+foo(10, "sth", 99, {}, "00-000 Warszawa", "00-000 Łódź");
+
+function bar(params) { 
+    if(params.hasOwnProperty("data")) console.log(params.data);
+    
+    var info = params.hasOwnProperty("info") ? params.info : "domyślna wartość info";
+    var str = params.hasOwnProperty("str") ? params.str : "domyślna wartość str";
+
+    console.log(info, str);
+}
+
+bar({ data:22, info: "txt", addr1: "Kraków" });
+
+// zamiast hasOwnProperty możemy zapisać
+
+function bar(params) {  
+    // OR czyli || zwróci parametr jeśli jest "truthy"
+    // jeśli pierwszy parametr jest falsy to przypisany zostanie drugi
+    // do zmiennej
+    var info = params.info || "domyślne info";
+    var str = params.str || "domyślne str";
+    console.log(info, str);
+}
+
+// txt domyślne str
+bar({ data:22, info: "txt", addr1: "Kraków" });
+
+
+// domyślne wartośći i obiekt jako argument
+function test(params) {
+    if(params.hasOwnProperty("data")) console.log(params.data);
+    var localStr = params.hasOwnProperty("str") ? params.str : "domyślne str";
+    var localNum = params.num || 200;
+
+    console.log(localStr, localNum);
+}
+
+test( {data: 10, str: "text", num2: 99} );
+// 10
+// text 200
+
+
+// domyślne parametry w ES2015
+function makeConnection(host = "www.duckduckgo.com",
+                 port = 80,
+                 method = "HTTP") {
+    console.log("host:"+host
+                +", port: " + port
+                +", method: " + method);
+}
+
+// host:www.duckduckgo.com, port: 80, method: HTTP
+makeConnection(); 
+
+// host:www.duckduckgo.com, port: 80, method: HTTP
+makeConnection(undefined);
+
+// host:www.google.pl, port: 80, method: HTTP
+makeConnection("www.google.pl");
+
+// host:www.google.pl, port: 443, method: HTTP
+makeConnection("www.google.pl", 443);
+
+// domyślną wartością może być nawet wynik funkcji
+function test(arg = increment() ){
+    console.log(arg);
+}
+
+let a = 0;
+function increment() { return ++a; }
+
+test(); // 1
+test(); // 2
+test(); // 3
+
+// ale nie zadziała to, gdy skorzystamy z wewnętrznej funkcji
+function foo( arg = check() ) {
+    function check() {
+        return "txt";
+    }
+}
+
+// Uncaught ReferenceError: check is not defined
+foo();
+
+
+// funkcje jako argumenty do funkcji
+function parseData( jsonTxt, onComplete, onError) {
+    try{
+        let result = JSON.parse(jsonTxt);
+        onComplete(result);
+    }catch(e){
+        onError();
+    }
+    
+}
+
+function done() { console.log("ok"); }
+function failed() { console.log("fail"); }
+
+parseData('{"data":25}', done, failed); // ok
+parseData('==', done, failed); // fail
+
+// return
+function foo(){} // zwraca domyślnie undefined
+function bar(){ return;} // undefined
+function test(){ return 1; } // 1
+function check(){ return {a:10}; } // {a:10} 
+
+void check(); // undefined
+
+// może być dowolna ilość return
+function test(x) {
+    if(x > 10) return "something";
+    if(x <= 10) return "anything";
+}
+
+// function hoisting
+
+function test() {
+    bar();
+    foo();
+
+    function foo() {
+        console.log("foo");
+    }
+
+    function bar() {
+        console.log("bar");
+    }
+}
+
+test();
+
+// wyrażenie funkcyjne a hoisting
+check(); // Uncaught TypeError: check is not a function
+
+var check = function() {
+    console.log("check");
+};
+
+
+// funkcja nazwana
+function foo() {};
+foo();
+
+// funkcja anonimowa przypisana do do zmiennej
+var test = function() { }
+test();
+
+
+
+// przekazywanie argumentów przez wartość i referencję
+function test( str, obj ) {
+    str = "Daniel";
+    obj = { data: 1, a: 12 }; // nie zmienia obiektu someObj
+    console.log("test() obj.data: " + obj.data);
+}
+
+var someText = "Ania";
+var someObj = { data: 10 };
+
+test(someText, someObj);
+
+console.log("someText:" + someText);
+console.log("someObj.data:" + someObj.data);
+/*
+test() obj.data: 1
+someText:Ania
+someObj.data:10
+*/
+
+
+
+
+// typowy przykład, użycie funkcji jako parametr do innej funkcji
+var result = [1,2,3,4,5].reduce( function(accumulator, currentValue) {
+    return accumulator + currentValue;
+} );
+
+console.log(result); // 15
+
+
+// zwracanie funkcji przez funkcje
+function foo() {
+    return function( value ){ return value * 2 };
+}
+
+// funkcja przypisana do bar
+var bar = foo();
+bar(4); // 8
+
+
+// wyrażenie funkcyjne a obiekt window
+function bar() {}
+typeof window.bar; // function
+
+var foo = function() {}
+typeof window.foo; // function 
+
+let check = function () {}
+typeof window.check; // undefined
+
+const doSth = function () {}
+typeof window.doSth; // undefined
+
+
+// funkcja strzałkowa, inny zapis wyrażenia funkcyjnego
+
+// wyrażenie funkcyjne
+const exprFoo = function (a,b) {
+    console.log(a,b);
+}
+
+// funkcja strzałkowa - arrow function, zapis bardziej skrócony
+const arrowBar = (a,b) => { console.log(a,b) };
+
+// przy jednym parametrze oraz jednej instrukcji można pominąć nawiasy
+const bar = a => console.log(a);
+
+// zwracanie argumentów
+let test = (a,b) => { return a * b; };
+
+// return również można pominąć jeżeli tylko funkcja coś zwraca
+let multiply = (a,b) => a * b;
+
+// => zwany fat arrow
+const splitStr = str => str.split(" ");
+var result = splitStr("jeden dwa trzy"); // ["jeden", "dwa", "trzy"]
+
+// zwrócenie obiektu
+let makeObj = () => { return {a:5, b: 10}; };
+let arrowObj = () => ( {a:5, b:10} ); // pomijając return w nawiasach okrągłych
+
+// przykłady zastosowania
+[2,4,8].forEach(function(a) {
+    console.log(a);
+});
+
+[2,4,8].forEach( a => console.log(a) );
+
+[2,4,8].reduce( (accumulator, currentValue) => accumulator + currentValue ); // 14
+
+const arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+var dividedBy3 = arr.filter(function (v){ // filter zwraca do tablicy jeśli true
+  return v % 3 === 0;
+});
+console.log(dividedBy3); // [ 3, 6, 9, 12, 15, 18 ]
+
+var dividedBy3 = arr.filter(
+  v => v % 3 === 0 // jeśli true będzie w zwracanej tablicy
+);
+
+// obiekt arguments nie jest dostępny w funkcji strzałkowej
+const arguments = [100, 99];
+const print = a => console.log(arguments[0]); // 100
+
+// ale działa rest parametr
+const show = (...params) => console.log(params);
+show(10, 20, 30); // Array(3) [ 10, 20, 30 ]
+
+const addUp = (...params) => params.reduce( (acc,v) => acc + v );
+addUp( 10, 20, 30, 40); // 100
+
+// konstruktor nie działa dla funkcji strzałkowej
+function Foo() { 
+}
+
+const foo = new Foo(); // działa, nowy obiekt
+
+let Bar = () => {
+}
+
+const bar = new Bar(); // błąd Uncaught TypeError: Bar is not a constructor
+
+window.data = 99;
+// this a arrow function
+function Bar() {
+    this.data = "test";
+
+    this.printInfo = function () {
+		let that = this;
+        setTimeout( function() {
+            console.log("this.data:"+ this.data ); // pokaże 99 z window
+            console.log("that.data:"+ that.data ); // pokaże test z Bar
+        }, 1000 );
+    }
+}
+
+const bar = new Bar();
+bar.printInfo();
+// this.data:99
+// that.data:test
+
+
+// funkcja strzałkowa zachowuje kontekst this swojego otoczenia
+// kontekst leksykalny, tutaj Foo
+window.data = 99; // problem z this rozwiązuje funkcja strzałkowa
+function Foo() {
+    this.data = "test";
+    this.printInfo = function () { 
+        setTimeout( () => { // this ma kontekt otoczenia
+            console.log("this.data:"+ this.data ); // pokaże test z Foo
+        }, 1000 );
+    }
+}
+
+const foo = new Foo();
+foo.printInfo();// that.data:test
+
+
+// funkcja natychmiastowa - Immediately Invoked Function Expression
+(function() {
+    var data = 10;
+    function bar(){}
+}());  // taki sam efekt z }) ();  
+
+console.log(data); // Uncaught ReferenceError: data is not defined
+console.log(bar); // ReferenceError: bar is not defined
+
+// module pattern
+var result = (function () {
+    var innerData = "inner value";
+
+    function innerFunc() {
+        console.log(innerData);            
+    };
+
+    return {data: 10, 
+            str: "text",
+            bar: innerFunc
+        };
+})();
+
+console.log(result); // Object { data: 10, str: "text", bar: innerFunc() }
+console.log(result.bar()); // "inner value"
+
+
+// z przekazaniem argumentu global
+let myApp = (function(global) {
+    let innerData = 23;
+    function innerFunction(){
+        return innerData;
+    }
+
+    return {
+        a: 100,
+        getData: function () {
+            return innerData / 2;
+        },
+        getMoreData: innerFunction
+    };
+})(window);
+
+myApp.getData(); // 11.5
+myApp.getMoreData(); // 23
+
+
+
+ // funkcja call pozwala na wywołanie funkcji z wskazanym this
+ // oraz argumentami
+
+ let obj = {
+     name: "Ola",
+     print: function(surname, city) {     // this wskazuje na obiekt obj z którego
+        console.log( this.name, surname, city ); // pobrana jest wartość name 
+     }
+ };
+
+ obj.print("Kot", "Wawa"); // Ola Kot Wawa
+
+ // call pozwala na zmianę kontekstu w jakim wywoływana jest funkcja
+let user = { name: "Rafał" };
+obj.print.call(user, "Kot", "Kraków" ); // Rafał Kot Kraków
+obj.print.apply(user, ["Kot", "Kraków"] ); // Rafał Kot Kraków
+
+var rInfo = obj.print.bind(user, "Musk", "Gdańsk");
+rInfo(); // Rafał Musk Gdańsk  - na stałe przypisane this i argumenty
+
+
+
+var myApp_propertyA = { data: "text", num: 10};
+var myApp_propertyA = { a: 12, b: 99 };
+
+function myApp_method1() {};
+function myApp_method2() {};
+function myApp_show() {};
+function myApp_print() {};
+
+
+
+// namespace jako jeden własy globalny obiekt
+var MYAPP = {
+    products: [],
+    Product: function(name, price) {
+        this.name = name;
+        this.price = price;
+        this.printInfo = function(){ console.log(this.name, ", price:" + this.price); };
+    },
+    addProduct: function(name, price) { 
+        let p = new MYAPP.Product(name, price);
+        this.products.push(p); 
+    }
+
+};
+
+MYAPP.addProduct("telefon", 700);
+MYAPP.products[0].printInfo(); // telefon , price:700
+
+// taki kod można później swobodnie rozszerzać w kolejnych oddzielnych plikach
+MYAPP.utils = {
+    parseData: function() {},
+    toString: function() {},
+    export: function() {}
+};
+
+MYAPP.config = {
+    language: "English",
+    theme : { skin: "dark"},
+    changeTheme: function() {}
+};
+
+
+// sprawdzenie czy istnieje obiekt z aplikacją np gdy kod jest rozbity na kilka plików
+// jeśli MYAPP istnieje to przypisywany do zmiennej, 
+// jeśli falsy to przypisywany pusty obiekt
+var MYAPP = MYAPP || {}; 
+
+// MYAPP konwertowany do boolean oraz negacja,
+// null/undefined da false, negacja true przez co przypisze nowy obiekt
+// truthy value da true, negacja da false i kod omija warunek if.
+if(!MYAPP) MYAPP = {};
+
+var MYAPP = MYAPP === undefined ? {} : MYAPP;
+
+
+// funkcja do tworzenia zagnieżdżonego namespace
+var MYAPP = MYAPP || {}; 
+function extendNS(ns, nsStr ) {
+    let nsParts = nsStr.split("."), parent = ns;
+    if( nsParts[0] == "MYAPP" ) nsParts = nsParts.slice(1); // kasuje pierwszy element
+
+    for(let i=0; i < nsParts.length; i++) {
+        let nsName = nsParts[i]; 
+        if(typeof parent[nsName] == "undefined" ) { 
+            parent[nsName] = {};  
+        }
+        parent = parent[nsName]
+    }
+    return parent;
+}
+
+var math = extendNS(MYAPP, "MYAPP.utils.math");
+math.sin = function(){};
+math.cos = () => {};
+
+var canvas = extendNS(MYAPP, "MYAPP.utils.drawing.canvas");
+canvas.drawText = function(){};
+canvas.drawLine = function(){};
+MYAPP.config = { language: "English" };
+
+
+MYAPP.utils.printInfo = function(text) {
+    // cachujemy referencje, bęzie działać szybciej
+    var context2d = MYAPP.utils.drawing.canvas;
+    context2d.drawText(text);
+    console.log(text);
+}
+
+// funckje natychmiastowe zapewniają prywatność zmiennych oraz funkcji
+
+var namespace = (function(){
+    let somePrivateStr = "Ala ma kota";
+    function privateMethod1() {
+        return somePrivateStr;
+    }
+    let privateConfig = { language: "English" };
+
+    function privateMethod2() {}
+
+    return {
+        publicConfig: privateConfig,
+        publicGetStr: privateMethod1,
+        utils: {
+            publicMethod: privateMethod2
+        }
+    }
+})();
+
+namespace.publicConfig.language = "Polish";
+namespace.publicGetStr();
+namespace.utils.publicMethod();
+
+
+// namespace przekazywany jako obiekt do funkcji natychmiastowej - IIFE
+(function(namespace){
+    let privData = 12345;
+    function privMethod1(){ return privData };
+
+    namespace.publicProperty = 7;
+    namespace.getData = privMethod1;
+    namespace.setData = function(newData) {
+        privData = newData;
+    }
+    
+})(window.namespace = window.namespace || {});
+
+console.log(window.namespace); // 7
+namespace.getData(); // 12345
+namespace.setData(100);
+
+(function(namespace){
+    namespace.printInfo = function() {
+        console.log(namespace.getData());
+    }
+})(window.namespace = window.namespace || {});
+
+namespace.printInfo(); // 100
+
+
+// namespace injection za pomocą funkcji apply
+var myApp = myApp || {};
+
+(function(){
+    let data = 25;
+    this.publicProperty = "some text";
+
+    this.publicGetData = function() { return data; }
+    this.utils = this.utils || {};
+}).apply(myApp);
+
+myApp.publicGetData(); // 25
+
+// dodanie utils
+(function(){
+    let arr = [1,2,3];
+    this.check = function() {}
+    this.getArr = function() { return arr };
+}).apply(myApp.utils);
+
+myApp.utils.getArr(); // [1,2,3]
+
+
+//
+// this
+//
+
+// podstawowy jest kontekst window
+console.log(this); // wyświetli obiekt window
+console.log(this === window); // true
+
+// globalThis wskazuje na globalny kontekst 
+
+window === globalThis; // true
+console.log(this === globalThis); // true
+
+if( 1 == 1 ) {
+    console.log(this); // window
+}
+
+// funkcja nie będąca podczas wywołania częscią obiektu to wewnątrz this jest 
+// obiektem globalnym
+function bar() {
+    console.log("bar this: " + this); 
+    console.log( this === window ); // true
+}
+
+bar(); // bar this: [object Window]
+
+// uwaga w przypadku strict mode sytuacja jest inna, będzie undefined wewnątrz funkcji
+function foo() {
+    "use strict";
+    console.log("z strict mode:" + this);
+    console.log(this === window); // false
+}
+foo(); // z strict mode: undefined
+
+// funkcja wywoływana na obiekcie będzie wskazywała na ten obiekt
+const person = {
+    name: "Jak Kowalski",
+    city: "Warszawa",
+    info: function(streetCode) {
+        // this wskazuje na obiekt person
+        console.log(this.name, this.city, streetCode);
+    }
+};
+
+person.info("00-123"); // Jan Kowalski, Warszawa, 00-123
+
+let ania = { name: "Ania Kowalska", city: "Szczecin"};
+person.info.call(ania, "05-555"); // Ania Kowalska Szczecin 05-555
+person.info.apply(ania, ["05-555"]); // Ania Kowalska Szczecin 05-555
+let aniaPrintMethod = person.info.bind(ania, "01-111");
+aniaPrintMethod(); // bind przypisuje na stałe this do obiektu
+
+
+
+
+const car = {
+    name: "Dodge Charger",
+    year: 1970,
+    category: "muscle car",
+    printInfo: function() {
+
+        function showCategory() {
+            console.log("Kategoria: " + this.category); // Kategoria: undefined
+            console.log("showCategory this === window: " + (this === window) ); // true
+        }
+        // this wskazuje na obiekt car
+        console.log(this.name, this.year); // Dodge Charger 1970
+        showCategory();
+    }
+};
+
+// Dodge Charger 1970
+// Kategoria: undefined  - prywatna funkcja, this wskazuje na window
+// showCategory this === window: true
+car.printInfo(); // 
+
+
+// this wskazujący na kliknięty element html - body
+let body = document.getElementsByTagName("body")[0];
+body.addEventListener("click", function(event) {
+    // this wskazuje na kliknięty element, body
+    console.log(this); 
+});
+
+
+// przechowanie this w self rozwiąże problem
+let body = document.getElementsByTagName("body")[0];
+body.addEventListener("click", function(event) {
+    let self = this; // przechowanie referencji do this (body) dostępną dla setTimeout
+    // setTimeout wywoła podaną funkcję po sekundzie
+    setTimeout(function (){
+        console.log(self === window); // będzie false
+        console.log(self); // self wskazuje na element body
+    }, 1000);  
+});
+
+// innym rozwiązaniem jest użycie funkcji strzałkowej, która ma zakres leksykalny
+// wynikający z kontektu kodu, a nie wykonywanego kontekstu
+let body = document.getElementsByTagName("body")[0];
+body.addEventListener("click", function(event) { 
+    // setTimeout wywoła podaną funkcję strzałkową po sekundzie
+    setTimeout( () => {
+        console.log(this === window); // będzie false
+        console.log(this); // self wskazuje na element body
+    }, 1000);  
+});
+
+// this w konstruktorze wywołanym przy użyciu new pozwala na dostep 
+// do nowo powstałego obiektu
+function Car(brand, name) {
+    this.brand = brand;
+    this.name = name;
+    this.printInfo = function() {
+        console.log(this.brand, this.name);
+    }
+}
+
+let dodge = new Car("dodge", "viper");
+dodge.printInfo(); // dodge viper
+
+// bez new this wskazuje na window
+let ford = Car("ford", "mustang");
+ford.printInfo(); // Uncaught TypeError: ford is undefined
+console.log(window.brand); // ford
+console.log(window.name); // mustang
+
+
+// przypisanie referencji funkcji z obiektu wyrzuca this z kontekstu 
+function Car(brand, name) {
+    this.brand = brand;
+    this.name = name;
+    this.printInfo = function() {
+        console.log(this.brand, this.name);
+    }
+}
+
+let pontiac = new Car("pontiac", "camaro");
+pontiac.printInfo(); // pontiac camaro
+let showCarInfo = pontiac.printInfo; // przypisanie funkcji do zmiennej
+showCarInfo(); // undefined <empty string>, błąd
+showCarInfo.apply(pontiac); // pontiac camaro, prawidłowo
+
+
+//
+// prototype
+//
+
+function thing() {}
+thing.prototype; // każda funkcja ma właściwości np prototype
+thing.call(); // dodatkowo jest dostęp do funkcji np. call etc
+thing.apply()
+thing.toString();
+
+// do prototype można dodawać pola i metody
+thing.prototype.data = 10;
+thing.prototype.printData = function() { console.log(this.data); };
+
+
+
+// funkcja konstruująca Thing 
+function Thing(name) {
+    this.name = name; 
+}
+
+Thing.prototype.year = 2000;
+Thing.prototype.printInfo = function() {
+    console.log(this.name, this.year);
+}
+
+let telephone = new Thing("phone");
+telephone.printInfo(); // phone 2000
+
+let tv = new Thing("tv");
+tv.printInfo(); // tv 2000
+
+// jeśli dodamy coś do prototype to będzie widoczne w jego wszystkich instancjach
+Thing.prototype.data = { str: "text" };
+Thing.prototype.weight = 50;
+
+// obie instancje telephone i tv mają dostęp do tych samych pól, 
+// nawet po ich utworzeniu!
+console.log( telephone.weight ); // 50
+console.log( tv.weight ); // 50
+
+
+console.log( telephone.data.str ); // text
+console.log( tv.data.str  ); // text
+
+// pola oraz metody z prototype nie są kopiami w nowych obiektach, to referencje
+telephone.data === tv.data; // true
+
+// jeśli szukana właściwości nie będzie w instancji obiektu to 
+// będzie szukana w prototype, czyli dla instancji w konstruktorze obiektu
+telephone.constructor.prototype.weight; // 50
+
+// łańcuch prototypów
+telephone.constructor.prototype.constructor.prototype
+
+
+// przesłonięcie właściwości
+function Thing(name) { 
+    this.name = name; 
+}
+
+Thing.prototype.weight = 50;
+let telephone = new Thing("phone");
+console.log( telephone.weight ); // 50
+
+// przesłonięcie weight bezpośrednią właściwością weight w instancji
+telephone.weight = 3;
+console.log( telephone.weight ); // 3
+
+// skasowanie property
+delete telephone.weight;
+console.log( telephone.weight ); // 50
+
+
+
+Thing.prototype.price = 600;
+console.log(telephone.constructor.prototype.price); // 600
+console.log(telephone.__proto__.price); // 600
+console.log( telephone.constructor.prototype === telephone.__proto__ ); // true
+
+
+
+// przykład z autami
+function Car(name) {
+    this.name = name;
+}
+Car.prototype.brand = "ford";
+Car.prototype.showInfo = function() {
+    console.log(this.brand, this.name);
+}
+
+let mustang = new Car("mustang");
+mustang.showInfo(); // ford mustang
+let f150 = new Car("f150");
+f150.showInfo(); // ford f150
+
+mustang.constructor.prototype === Car.prototype; // true
+
+// listowanie właściwości obiektu włączając z prototypu
+for (prop in mustang) {
+    console.log(prop);
+}
+// name
+// brand
+// showInfo
+
+for (prop in mustang) {
+    if (mustang.hasOwnProperty(prop)) console.log(prop);
+}
+
+
+
+// aktualizacja prototypu dla wszystkich instancji
+function Car(name) {
+    this.name = name;
+}
+Car.prototype.brand = "ford";
+
+let mustang = new Car("mustang"); 
+let f150 = new Car("f150"); 
+
+Car.prototype.price = 120500;
+console.log(mustang.price); // 120500
+console.log(f150.price); // 120500
+
+
+// przypisanie obiektu do prototypu działa inaczej
+function Car(name) {
+    this.name = name;
+}
+Car.prototype.brand = "ford";
+
+let mustang = new Car("mustang"); 
+let f150 = new Car("f150"); 
+
+Car.prototype.price = 120500;
+console.log(mustang.price); // 120500
+console.log(f150.price); // 120500
+
+Car.prototype = { weight: 2000 };
+let dodge = new Car("viper");
+console.log(dodge.brand); // undefined
+console.log(dodge.weight); // 2000
+console.log(f150.price); // 120500
+
+
+
+// manipulując  prototypem możemy wpłynać na informację o konstruktorze
+function Car(name) {
+    this.name = name;
+}
+Car.prototype.brand = "ford";
+let mustang = new Car("mustang");  
+
+Car.prototype.price = 120500;
+console.log(mustang.constructor); // Car()
+
+Car.prototype = { weight: 2000 };
+let dodge = new Car("viper");
+console.log(dodge.brand); // undefined, nie ma w nowym prototypie
+console.log(dodge.weight); // 2000, wskazuje na nowy prototyp
+console.log(mustang.price); // 120500, wskazuje na stary prototyp
+
+console.log(dodge.constructor); // Object() nieporpawna informacja
+console.log( Car.prototype.constructor ); // Object() niepoprawna informacja
+Car.prototype.constructor = Car; // nadpisujemy aby informacja była prawidłowa
+console.log(dodge.constructor); // Car(), prawidłowo
+
+
+
+
+// tworzenie łańcuchów prototypów do uzyskania dziedziczenia
+function Figure() { // figura geometryczna
+    this.name = "geometric figure";
+    this.toString = function(){ console.log( this.name); };
+}
+function Figure2d() {
+    this.name = "2d figure"
+}
+function Rect(x, y, sideLength) {
+    this.x = x;
+    this.y = y;
+    this.sideLength = sideLength;
+    this.name = "rect";
+}
+
+// zamiast dodawać poszczeglne pola można nadpisać
+// prototyp czymś nowym
+Figure2d.prototype = new Figure();
+Rect.prototype = new Figure2d();
+
+let rect = new Rect(10,10, 100);
+
+// naprwiamy info o konstruktorze
+Figure2d.prototype.constructor = Figure2d;
+Rect.prototype.constructor = Rect;
+
+rect.toString(); // rect, wywołanie toString z Figure()
+
+// instanceof sprawdza czy rect jest instancją
+// wszystkich 3 konstruktorów
+rect instanceof Figure; // true
+rect instanceof Figure2d; // true
+rect instanceof Rect; // true
+// inny sposob
+Figure2d.prototype.isPrototypeOf(rect); // true
+
+
+
+// kolejny przykład, pożyczanie konstruktora i ustawianie prototypu
+function Machine(name, vendor){
+    this.name = name;
+    this.vendor = vendor;
+    this.printInfo = function() {
+        console.log(this.name, this.vendor);
+    }
+}
+
+Machine.prototype.getVendor = function() {
+    return this.vendor;
+}
+
+function Vehicle(name, vendor, type, numWheels) {
+    // wyołanie konstruktora Machine na nowo
+    // tworzonym obiekcie
+    Machine.call(this, name, vendor);
+    this.type = type;
+    this.numWheels = numWheels;
+}
+
+let car1 = new Vehicle("raptor", "ford", "truck", 4);
+car1.printInfo(); // raptor ford
+
+
+
+// niestety prototype nie będzie odziedziczony
+// trzeba go przypisać jako obiekt do prototypu dziecka
+// Vehicle.prototype = new Machine();
+function Machine(name, vendor){
+    this.name = name;
+    this.vendor = vendor;
+    this.printInfo = function() {
+        console.log(this.name, this.vendor);
+    }
+}
+
+Machine.prototype.getVendor = function() {
+    return this.vendor;
+}
+
+function Vehicle(name, vendor, type, numWheels) {
+    // wyołanie konstruktora Machine na nowo
+    // tworzonym obiekcie
+    Machine.call(this, name, vendor);
+    this.type = type;
+    this.numWheels = numWheels;
+}
+Vehicle.prototype = new Machine();
+console.log(Vehicle.prototype.constructor); // Machine()...
+Vehicle.prototype.constructor = Vehicle; // poprawka na Vehicle
+
+let car2 = new Vehicle("f150", "ford", "truck", 4);
+car2.printInfo(); // f150 ford
+car2.getVendor(); // ford
+
+
+// Object.create(proto, properties) - proto będzie prototypem nowo stworzoneg obiektu
+// dodatkowo moga być dodane nowe właściwości
+const player = {
+    name: "unknown",
+    login: function() { console.log(this.name + " zalogowany"); },
+    logout: function() { console.log(this.name); },
+    printInfo: function() { console.log(this.name, this.country, this.points); }
+};
+
+// bot ma prototyp z obiektem player oraz dodane name i country
+let bot = Object.create(player, {
+    name: { value: "cpu player 1" },
+    country: { value: "n/a" }
+});
+
+bot.points = 10;
+
+bot.login(); // cpu player 1 zalogowany
+bot.printInfo(); // cpu player 1 n/a 10
+
+
+
+
+
+//
+// Domknięcia
+// 
+
+// foo to oddzielne środowisko od globalnej przestrzeni
+let b = 99;
+let c = 7
+function foo() {
+    let b = 10; 
+    c = -1; // zmiana globalnej zmiennej
+    console.log("b:" + b, "c:" + c);
+}      
+
+foo(); // b: 10, c:-1
+
+
+let b = 99;
+
+function foo() {
+    let b = 10;
+    function bar() {
+        let a = 5; 
+        console.log("a:" + a, "b:" + b);
+    }
+    return bar;
+}
+
+// w show jest zwrócona referencja do funkcji bar
+const show = foo(); 
+// funkcje wywołujemy z ()
+show(); // a:5 b:10
+show(); // a:5 b:10
+
+
+// nie trzeba zwracać funkcji by osiągnąć podobny efekt np.
+
+var bar;
+function show(){
+    let b = 10;
+    bar = function(){
+        let a = 5;
+        // dostęp do zmiennej b nadal zachowany
+        console.log("a:" + a, "b:" + b);
+    }
+}
+
+show();
+bar(); // a:5 b:10
+
+
+// console.dir do podejrzeznia dostępnych scopes - zakresów dla funkcji
+function lib() {
+    let num = 6;
+    let data = "Ala ma kota";
+    function inner(){ 
+        return data 
+    }
+
+    function test() {
+        console.log("num: " + num, inner() )
+    }
+
+    return test;
+}
+
+const show = lib();
+console.dir(show); // pokaże Scopes
+show(); // num: 6 Ala ma kota
+
+
+function lib() {
+    let num = 1;
+
+    function test() {
+        console.log("Wywołanie num: " + num);
+        num++;
+    }
+
+    return test;
+}
+
+const show = lib();
+console.dir(show); // pokaże Scopes
+show(); // Wywołanie num: 1
+
+
+
+// currying , rozkładanie funkcji na pojedyncze funkcje
+function test(x) {
+    return function(y) {
+        console.log(x + y);
+    }
+}
+
+let add10 = test(10); // x będzie jako 10 i zwrócona będzie funkcja
+add10(7); // y będzie 7 i dodane do x=10, czyli 17
+
+add10(20); // 30
+
+
+
+// Domknięcia - closures  pozwalają na zdefiniowanie prywatnych i publicznych zmiennych oraz funkcji. 
+function carDetails() {
+    let privName = "unknown";
+
+    function setNamePriv(newName){ privName = newName; }
+    function getNamePriv(){ return privName; }
+
+    return {
+        setName: setNamePriv,
+        getName: getNamePriv,
+        data: 10
+    };
+}
+
+let car = carDetails();
+car.getName(); // unknown
+car.setName("pontiac");
+car.getName(); // pontiac
+car.data; // 10
+car.privName; // undefined
+
+
+
+// problem z closure oraz pętlami
+for(var i = 0; i < 3; i++) {
+    setTimeout(function() {
+        console.log(i);
+    }, 300);
+}
+
+// 3
+// 3
+// 3
+
+
+// let zawsze będzie rozróżnione w każdej iteracji pętli
+// dlatego nie będzie powyższego problemu
+for(let i = 0; i < 3; i++) {
+    setTimeout(function() {
+        console.log(i);
+    }, 300);
+}
+
+// 0
+// 1
+// 2
+
+
+// Kolejnym rozwiązaniem to przekazanie wartości do funkcji jako argument 
+// co gwarantuje, że nowe domknięcie udostępni prawidłową wartość: 
+for(var i = 0; i < 3; i++) {
+
+    (function(a){ // wartość i będzie przekazana jako argument i wykorzystana w console
+
+        setTimeout(function() {
+            console.log(a);
+        }, 300);
+
+    })(i); // przekazanie wartości i do wywoływanej funkcji
+           // co tworzy now closure
+    
+}
+
+
+// problem z dom i domknięciami oraz eventami
+/*
+    <style>
+        .vehicle {border: 1px solid white; color: white; }
+    </style>
+    <div class="vehicle">porsche</div>
+    <div class="vehicle">mercedes</div>
+    <div class="vehicle">bmw</div>
+    <div class="vehicle">ford</div>
+*/
+var cars = document.getElementsByClassName("vehicle");
+for(var i=0; i < cars.length; i++) {
+    cars[i].onclick = function() {
+        console.log( "car i:" + i, cars[i] );
+    }
+}
+
+// let rozwiąże problem
+        var cars = document.getElementsByClassName("vehicle");
+        for(var i=0; i < cars.length; i++) {
+            cars[i].onclick = function() {
+                console.log( "car i:" + i, cars[i] );
+                cars[i].style.color = "red";
+            }
+        }
+
+
+    </script>
+    
+
+    <div class="vehicle">porsche</div>
+    <div class="vehicle">mercedes</div>
+    <div class="vehicle">bmw</div>
+    <div class="vehicle">ford</div>
+</body>
+</html>

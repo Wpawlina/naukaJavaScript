@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Thing(name)
+        {
+            this.name=name;
+        }
+        Thing.prototype.year=2000;
+        let telephone=new Thing('telephone');
+        let tv=new Thing('tv');
+        console.log(telephone.name,telephone.year);
+        console.log(tv.name,tv.year);
+        console.log(tv);
+        console.log(tv.constructor.prototype)
+        console.log(telephone.__proto__)
+        Thing.prototype.weight=50;
+        console.log(telephone.weight);
+        telephone.weight=3 //przysłanianie wlasciwosci prototype
+        console.log(telephone.weight);
+        Thing.prototype={weight:2000};
+        Thing.prototype.constructor=Thing;//po nadpisaniu prototypu nalezy ustawić konstruktor
+        console.log(tv.weight);
+        const tablet=new Thing('tablet');
+        console.log(tablet.weight);
+        console.log(tablet.year);
+        console.log(Thing.prototype.weight);
+        // zawsze powinno uzywac sie w petli warunku hasproperty innaczej zwrocony zostanie również konstruktor
+        for(prop in tablet)
+        {
+            document.write(prop+'<br>');
+        }
+        document.write('<br><br>')
+        for(prop in tablet)
+        {
+            if(tablet.hasOwnProperty(prop))
+            {
+                document.write(prop+'<br>');
+            }
+        }
+
+        function Figure()
+        {
+            this.name="geometric figure";
+            this.toString=function () {
+                return this.name;
+            }
+        }
+
+        function Figure2d()
+        {
+            this.name="2d figure";
+        }
+
+        function Rect(x,y,sideLength)
+        {
+            this.x=x;
+            this.y=y;
+            this.sideLength=sideLength;
+            this.name='rectangle';
+        }
+
+        // dodanie dziedzieczneia dla prototypow
+        Figure2d.prototype=new Figure();
+        Rect.prototype=new Figure2d();
+        let rectangle1=new Rect(10,10,100);
+        //console.log(rectangle1.prototype.constructor); undefined
+        console.log(rectangle1);
+        // naprawa inforamcji o konstruktorze;
+        
+       Figure2d.prototype.constructor=Figure2d;
+        Rect.prototype.constructor=Rect;
+
+        let rectangle2=new Rect(10,10,100);
+        console.log(rectangle2.toString());
+      
+        console.log(rectangle2);
+
+        console.log(rectangle2 instanceof Figure);
+        console.log(Figure.prototype.isPrototypeOf(rectangle2));
+
+        //dziedziczenie poprzez pozyczenie konstruktora
+        function Machine(name,vendor)
+        {
+            this.name=name,
+            this.vendor=vendor,
+            this.PrintInfo=function ()
+            {
+                console.log(this.name,this.vendor);
+            }
+        }
+        Machine.prototype.getVendor=function()
+        {
+            return this.vendor;
+        }
+        function Vehicle(name,vendor,type,numWheels)
+        {
+            Machine.call(this,name,vendor),
+            this.type=type,
+            this.numWheels=numWheels
+        }
+        Vehicle.prototype=new Machine();
+        Vehicle.prototype.constructor=Vehicle;
+        let car1=new Vehicle('raptor','ford','truck',4);
+        car1.PrintInfo();
+        //car1.getVendor(); blad vehicle nie dziedziczy prototypu machine
+      
+        car1.getVendor();
+        console.log(car1);
+
+        const player={
+            name: "unknown",
+            login: function() {console.log(this.name+" zalgowano")},
+            logout:function(){ console.log(this.name);},
+            printInfo:function(){console.log(this.name,this.country,this.points);}
+        }
+        let bot=Object.create(player,{
+            name:{value:"cpu player 1"},
+            country:{value: "n/a"},
+            getName:{value:function (){console.log(this.name);}}
+    });
+    bot.points=10;
+
+    bot.login();
+    bot.printInfo();
+    console.log(bot.constructor.prototype)
+    console.log(bot.__proto__)
+    console.log(bot);
+    bot.getName();
+   
+    
+
+        //Object.create
+
+
+
+
+    
+       
+        
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let phone={
+            brand:'Sony',
+            model:'Xperia',
+            manufacureDate:2023,
+            connect: function (contact)
+            {
+              console.log("Połączenie z: ",contact);  
+            },
+            getInfo: function()
+            {
+                console.log(this.brand,this.model,this.manufacureDate);
+            } 
+        }
+        phone.connect(987654321);
+        phone.getInfo();
+
+        let school={
+            name: "Sp2",
+            city:'Kraków',
+            students:[],
+            addStudent: function(name,surname)
+            {
+                this.students[this.students.length]={
+                    name:name,
+                    surname:surname
+                }
+            },
+            showStudnets: function()
+            {
+                if(this.students.length!==0)
+                {
+                    console.log(this.students);
+                }
+                else
+                {
+                    console.log('Brak studentów');
+                }
+            },
+            showStudnetsByName: function (name)
+            {
+                for(let i=0;i<this.students.length;i++)
+                {
+                    if(this.students[i].name===name)
+                    {
+                        console.log(this.students[i]);
+                    }
+                }
+
+            },
+            getNumStudent: function()
+            {
+                console.log(this.students.length);
+
+            },
+            resetStudents: function ()
+            {
+                this.students=[];
+            }
+
+
+        };
+        school.addStudent("Jan","Nowak");
+        school.addStudent("Janusz","Abak");
+        school.addStudent("Jan","Kowalski");
+        school.addStudent("Adam","Nowakowski");
+        console.log(school.students);
+        school.showStudnetsByName('Jan');
+        school.getNumStudent();
+        school.resetStudents();
+        school.getNumStudent();
+
+        let getObj=(data) =>data*2;//zwroci date przemnozona przez 2
+
+
+        var fun1=function (test){ 
+            var bbb=test;
+            console.log(bbb);
+        }
+        fun1('test');
+        (function (data) { 
+            console.log(data);
+        })("test")//IIFE
+
+        function NewsPaper(name,date)
+        {
+            if(this instanceof NewsPaper == false)//zabezpieczenie przed wywołaniem bez new co powoduje ze this stajesie window
+           {
+                return new NewsPaper(name,date);
+            }
+            this.name=name;
+            this.date=date;
+            this.ads=[];
+            this.addAdvert=(name,page) =>
+            {
+                this.ads.push({name:name,page:page});
+            }
+            this.printAdverts=function()
+            {
+                console.log(this.ads);
+            }
+        }
+        const newsPaper1=new NewsPaper('tekst1','2023-06-05');
+        newsPaper1.addAdvert('reklama1',2);
+        newsPaper1.addAdvert('reklama2',2);
+        newsPaper1.addAdvert('reklama31',4);
+        newsPaper1.printAdverts();
+        const newsPaper2=NewsPaper('tekst2','2023-06-05');
+        for(const prop in newsPaper1)
+        {
+            if(newsPaper1.hasOwnProperty(prop))
+            {
+                console.log(prop,newsPaper1[prop])
+            }
+
+        }
+
+        const truck={
+            _brand: null,
+            _model: null,
+            _topSpeed:0,
+            set brand(newValue)
+            {
+                this._brand=newValue;
+            },
+            get brand()
+            {
+                return this._brand;
+            },
+            set model(newValue)
+            {
+                this._model=newValue;
+            },
+            get model()
+            {
+                return this._model;
+            },
+            set topSpeed(newValue)
+            {
+                if(newValue>0)
+                {
+                    this._topSpeed=newValue;
+                }
+                else
+                {
+                    console.log('Speed to low');
+                }
+            },
+            get topSpeed()
+            {
+                return this._topSpeed;
+            }
+        }
+        truck.brand="Mercedes";
+        truck.model="MX1";
+        truck.topSpeed=0;
+        truck.topSpeed=120;
+        console.log(truck.brand);
+        console.log(truck.model);
+        console.log(truck.topSpeed);
+
+
+
+        let obj={
+            name:12,
+            print1:()=>console.log(this),
+            print2:function (){console.log(this)},
+        };
+        obj.print1();
+        obj.print2();
+
+      
+
+
+      
+
+
+
+
+
+
+      
+
+
+
+
+
+
+    </script>
+</body>
+</html>

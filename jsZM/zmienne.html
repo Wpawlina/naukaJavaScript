@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let city='w Madrycie';
+        let text=`Życie jak ${city}`;
+        document.write(text+'<br>');
+        let country={
+          name:'Poland',
+          population: 38_000_000,
+          continent: 'Europe',
+          cities: ['Warszawa','Kraków','Poznań'],
+          capital: {
+            name:'Warszawa',
+            population: 2_000_000
+          } 
+        };
+        console.log(country);
+        document.write(country.name,'<br>');
+        document.write(country.capital.population+'<br>');
+        let brands=['sony','lenovo','dell','google'];
+        brands[3]=brands[3]+'!'
+        console.log(brands[brands.length-1]);
+        let txt=`Ola`;
+        switch(txt)
+        {
+            case 'Ala':
+                document.write('txt jest równe Ala')
+            break;
+            case 'Ola':
+                document.write('txt jest równe Ola')
+            break;
+            default:
+                document.write('txt jest inne');
+            break;
+        }
+        document.write('<br>')
+        let temp=20;
+        switch(temp)
+        {
+            case -5:
+            case -10:
+                document.write('zimno')
+            break;
+            case  0:
+                document.write('zamarzanie')
+            break;
+            case 5:
+                document.write('przedwiośnie')
+            break;
+            case 10:
+                document.write('wiosna')
+            break;
+            case 20:
+                document.write('lato')
+            break;
+            default:
+                document.write('nie znana tempertura')
+            break;
+
+
+        }
+        console.log(4==='4')
+        let data={ a:12,b:'aaa',c: true };
+        delete data.c;
+        console.log(data);
+
+        let num='15'+20;
+        console.log(num);
+        num=+'15'+20;//dodanie + przed strigniem powoduje zmaine kontkatenacji w sume
+        console.log(num);
+
+        let obj={a:12,b:14,c:15};
+        console.log('a' in obj)// operator in sprawdza czy dana wlasciwosc jest w obiekcie
+        console.log(12  in obj)// dla obiketow in nie sprawdza zawartosci tych wlasciwosci 
+
+        const arr=[1,2,3,4,5];
+        console.log(1 in arr)// dla tablic in sprawdza czy dana liczba jest wartoscia ktorejs z komorek tablicy
+
+        const date=new Date(2200,11,13);
+        console.log(date);
+        console.log(date instanceof Date);//instanceof sprawdza czy dany obiekt jest wystopieniem danej klasy
+    
+        console.log(typeof 12);
+        if(!!1)
+        {
+            console.log('true++')
+        }
+        console.log(!!1)
+
+
+    </script>
+    
+</body>
+</html>

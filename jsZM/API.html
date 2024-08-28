@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="joke"></div>
+    <script>
+        const url="https://swapi.dev/api/people/1/";
+        fetch(url).then(response=>response.json()).then(showData);
+        function showData(data){
+            console.log(data);
+        }
+        const url2="https://api.chucknorris.io/jokes/random";
+        window.onload=function () {
+            let div=document.querySelector('#joke');
+            setInterval(() => {
+                getJoke(function (data){
+                    console.log(data);
+                    div.innerHTML=data.value;
+                });
+                
+            },10000);
+
+        }
+        function getJoke(callback)
+        {
+            fetch(url2).then(response=>response.json()).then(callback);
+
+        }
+
+
+    </script>
+    
+</body>
+</html>
